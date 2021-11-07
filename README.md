@@ -1,5 +1,6 @@
 # cel-mnit-jaipur
 Django+sqlite
+Bootstrap
 
 ## Preview
 <img width="1440" alt="Screenshot 2021-11-07 at 10 50 07 PM" src="https://user-images.githubusercontent.com/64217477/140654994-2725810f-e874-4416-9be1-fdc8baae626a.png">
