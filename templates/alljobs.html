@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container py-5 mb-3">
+    <div class="text-end">
+        <h2>All Job Postings</h2>
+    </div>
+    {% for i in jobdata %}
+    <div class="card p-3 job-name mb-2" style="border-radius:12px;">
+        <div class="card-body">
+            <h3 class="jobname" style="color: #5624d0">{{i.companyname}}</h3>
+            <p class="mb-0">{{i.post}}</p>
+            <p class="mb-0">Qualification: {{i.education}}</p>
+            <p class="mb-0">Vacant Seats <span style="color:green;font-weight: 700;">{{i.vacantseats}}</span></p>
+            <p class="text-muted mb-0">
+                {{i.jobdesc}}
+            </p>
+            <div class="pt-3" style="display:flex;justify-content:space-between;">
+                <p><i class="fa fa-map-marker marker"></i> {{i.location}}</p>
+                <p>Job posted by  <span class="text-muted">{{request.user.username}}</span></p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock content %}

@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<section style="height:50vh; background-image: url(../static/images/kisibhinaam.jpg);">
+</section>
+<div class="container py-5">
+    <div class="text-end">
+        <h2>Add Your Interview Experience</h2>
+    </div>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group pb-3">
+            <label for="studentname">Student Name</label>
+            <input type="text" class="form-control"  name="studentname" required/>
+        </div>
+        <div class="form-group pb-3">
+            <label for="branch">Branch</label>
+            <input type="text" class="form-control"  name="branch" required/>
+        </div>
+        <div class="form-group pb-3">
+            <label for="passoutyear">Passout Year</label>
+            <input type="text" class="form-control"  name="passoutyear" required/>
+        </div>
+        <div class="form-group pb-3">
+            <label for="companyplaced">Company Placed</label>
+            <input type="text" class="form-control"  name="companyplaced" required/>
+        </div>
+        <div class="form-group pb-3">
+            <label for="experience">Experience</label>
+            <input type="text" class="form-control" name="experience" required/>
+        </div>
+        
+        
+        
+        <div class="form-group">
+            <input type="submit" value="Add" class="btn btn-primary">
+        </div>
+    </form>
+</div>
+{% endblock content %}
+
+
+

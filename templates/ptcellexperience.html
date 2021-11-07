@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container py-5">
+    <div class="text-end mb-3">
+        
+        <h3 style="display: inline" class="me-3">Placement Connect</h3><a href="/addexperience"class="btn btn-primary"><i class="fa fa-plus"></i></a>
+    </div>
+    <div class="row ">
+        {% for i in data %}
+        <div class="col-md-6 col-lg-6 col-12 h-100 mb-4">
+            <div class="card h-100 p-3 ek-class" style="border-radius: 11px;">
+                <div class="text-end">
+                    <img style="height: 5rem;width: 5rem;" class="img-fluid rounded-circle" src="https://naukrirecruiter.naukri.com/profilePic/getpic?pid=1445319582rp2445146_medium4" alt="">
+                    <h4 class="pt-3">{{i.studentname | title}}</h4>
+                    <p class="mb-0">{{i.branch | title}}</p>
+                    <p class="mb-0">Company Placed: {{i.companyplaced | title}}</p>
+                    <p class="mb-0">Passout Year: <span style="color: blue;">{{i.passoutyear | title}}</span></p>
+                </div>
+                <p class="pt-3 text-muted" style="text-align:justify"> <i class="fa fa-quote-left" style="color:rgba(85, 36 , 208, 0.12)"></i> {{i.experience}}</p>
+            </div>
+        </div>
+        {% endfor %}
+        
+    </div>
+</div>
+
+{% endblock content %}

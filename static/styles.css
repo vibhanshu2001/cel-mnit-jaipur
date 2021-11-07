@@ -1,0 +1,315 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
+html {
+  scroll-behavior: smooth;
+}
+body {
+  font-family: "Poppins", sans-serif;
+}
+.logo {
+  max-height: 50px;
+  margin-top: 10px;
+}
+.bg-light {
+  background-color: #fff !important;
+}
+.font-roboto {
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+}
+.soc-icon:hover {
+  color: #eee !important;
+  cursor: pointer;
+}
+.apply-button {
+  background-color: #5624d0 !important;
+  margin-right: 27px;
+  padding: 5px 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.nav-link {
+  font-family: "Poppins", sans-serif;
+  font-size: 15px;
+  color: #101010 !important;
+  font-weight: 500 !important;
+}
+.dropdown-toggle::after {
+  content: none;
+}
+.subtitle {
+  color: #5624d0;
+  font-size: 13px;
+  line-height: 24px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+.title {
+  font-size: 50px;
+  line-height: 60px;
+  font-weight: 800;
+  color: #0c121d;
+  margin-bottom: 40px;
+}
+.know-button {
+  padding: 16px 55px;
+  font-size: 14px;
+  letter-spacing: 1px;
+  border: 2px solid #5624d0;
+  color: #5624d0;
+  font-weight: 700;
+  background: transparent;
+  border-radius: 6px;
+}
+.know-button:hover {
+  background-color: #5624d0;
+  color: #ffffff;
+  transition: 300ms;
+}
+.four-list {
+  line-height: 34px;
+  font-weight: 400;
+  position: relative;
+  padding-left: 30px;
+}
+.four-list::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: "\f058";
+  font-family: "FontAwesome";
+  color: #5624d0;
+  font-size: 20px;
+}
+.apply-btn {
+  border: none;
+  border-radius: 3px;
+  display: inline-block;
+  text-transform: uppercase;
+  font-size: 16px;
+  font-weight: 500;
+  color: #fff;
+  background: #106eea;
+  transition: 300ms;
+  padding: 13px 32px;
+  margin-top: 35px;
+}
+.apply-btn:hover {
+  background-color: #228bfd;
+  color: #fff !important;
+}
+.icon-p {
+  font-size: 44px;
+  line-height: 60px;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 16px;
+  margin-top: 20px;
+  font-family: "Roboto";
+}
+.icon-h {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 18px;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin: 0;
+}
+.why-h {
+  margin-bottom: 10px;
+  font-size: 22px;
+  line-height: 32px;
+  font-weight: 700;
+}
+.know-btn:hover {
+  background-color: #20429d !important;
+}
+.at-card {
+  box-shadow: 0px 0px 45px -22px rgb(0 0 0 / 22%);
+  background-image: linear-gradient(180deg, #ffffff 0%, #f2f4fc 100%);
+  padding: 40px 25px 30px;
+}
+.owl-nav {
+  display: none !important;
+}
+.owl-theme .owl-dots .owl-dot span {
+  width: 25px !important;
+  height: 8px !important;
+  margin: 0 5px !important;
+  background: #5624d0 !important;
+  border-radius: 50px !important;
+  opacity: 0.5;
+  transition: 300ms;
+  box-shadow: 0 3px 8px 0 rgb(0 0 0 / 25%) !important;
+}
+.owl-theme .owl-dots .owl-dot.active span {
+  width: 40px !important;
+  opacity: 1;
+  background-color: #5624d0 !important;
+  margin: 0 5px;
+  border-radius: 50px;
+  height: 8px;
+}
+.blog-card:hover {
+  margin-top: -10px;
+}
+.blog-card {
+  transition: 300ms ease;
+}
+.blog-card:hover .card-img-top img {
+  filter: grayscale(1);
+}
+#fixed-menu {
+  display: none;
+  z-index: 60;
+  padding: 0 !important;
+}
+.dropdown:hover .dropdown-menu {
+  display: block;
+  margin-top: 0;
+}
+.dropdown-menu {
+  border: 0 !important;
+  background-color: #5624d0;
+}
+.btn-primary{
+  background-color: #5624d0 !important;
+  border: 0 !important;
+}
+.dropdown-item {
+  color: white !important;
+}
+.dropdown-item:hover {
+  background-color: transparent !important;
+  color: #eee !important;
+}
+.nav-link:hover {
+  color: #5624d0 !important;
+}
+@media only screen and (max-width: 990px) {
+  #fixed-menu {
+    display: none !important;
+  }
+  .dot-icon,
+  .apply-button {
+    display: none !important;
+  }
+  #top-section{
+      display: none;
+  }
+}
+.navbar-light .navbar-toggler {
+  border: 0 !important;
+}
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler-icon:focus {
+  outline: none;
+  box-shadow: none;
+}
+#myBtn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  border: none;
+  outline: none;
+  background-color: #ab8bfc;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 50%;
+  width: 42px;
+  height: 40px;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 36px;
+  transition: all 0.3s ease;
+  box-shadow: 0px 0px 2px rgb(0 0 0 / 40%);
+  justify-content: center;
+  align-items: center;
+}
+
+#loading {
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  position: fixed;
+  display: block;
+  z-index: 99;
+  background-color: white;
+}
+
+#loading-image {
+  position: absolute;
+  top: 40%;
+  left: 45%;
+  z-index: 100;
+}
+  .nav-pills .nav-link.active, .nav-pills .show>.nav-link{
+  background-color: #5624d0 !important;
+  color: #fff !important;
+}
+.ptcell-logo{
+  filter: grayscale(1);
+  transition: 0.3s linear;
+}
+.ptcell-logo:hover{
+  filter: grayscale(0);
+  transform: scale(1.1);
+}
+.login-btn:hover{
+  background-color: #4720ab !important;
+}
+textarea:hover, 
+input:hover, 
+textarea:active, 
+input:active, 
+textarea:focus, 
+input:focus,
+button:focus,
+button:active,
+button:hover,
+label:focus,
+.btn:active,
+.btn.active
+{
+    outline:0px !important;
+    -webkit-appearance:none;
+    box-shadow: none !important;
+    border-color: #5624d0 !important;
+}
+footer{
+  background-image: url(images/footer-img.jpeg);
+}
+.helptext{
+  visibility: hidden !important;
+}
+#counter{
+  background-image: url(images/palpal.png);
+}
+.logo-plac{
+  height:50px !important;
+  width: 100%;
+}
+.ek-class{
+  box-shadow: 0px 0px 2px rgb(0 0 0 / 40%);
+}
+.ek-class:hover{
+  border-color: #5624d0;
+  
+
+}
+.jobname:hover{
+  text-decoration: underline !important;
+}
+.marker:hover{
+  color: red;
+}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container py-4">
+    <div class="text-end">
+        <h2>All Users</h2>
+    </div>
+    <div class="row mt-3">
+        {% for i in users %}
+        <div class="col-4 h-100">
+            <div class="card">
+                <div class="card-body">
+                    {{i.username}}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock content %}

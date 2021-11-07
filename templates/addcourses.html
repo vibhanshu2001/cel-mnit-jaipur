@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<section style="height:50vh; background-image: url(../static/images/kisibhinaam.jpg);">
+</section>
+<div class="container py-5">
+    <div class="text-end">
+        <h2>Add New Course</h2>
+    </div>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group pb-3">
+            <label for="coursetitle">Course Name</label>
+            <input type="text" class="form-control" placeholder="Course name" name="coursetitle" required/>
+        </div>
+        <div class="form-group pb-3">
+            <label for="coursedesc">Course Description</label>
+            <input type="text" class="form-control" placeholder="Course Description" name="coursedesc" required/>
+        </div>
+        <div class="form-group pb-3">
+            <label for="courselink">Course Link</label>
+            <input type="text" class="form-control" placeholder="Course Description" name="courselink" required/>
+        </div>
+        
+        <div class="form-group pb-3">
+            <label for="category">Course Category</label>
+            <select  class="form-control" name="category">
+                <option value="web development">Web Development</option>
+                <option value="ml">ML</option>
+                <option value="ai">AI</option>
+            </select>
+        </div>
+        <div class="pb-2">
+            <label for="thumbnailcourses" class="form-label">Choose Thumbnail for Course</label>
+            <input class="form-control" type="file" id="thumbnailcourses">
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Add" class="btn btn-primary">
+        </div>
+    </form>
+</div>
+{% endblock content %}
+
+
+
