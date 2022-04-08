@@ -1,11 +1,13 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-
-<div class="container py-5 mb-3">
-    <div class="text-end">
-        <h2>All Job Postings</h2>
+<section style="background-repeat:no-repeat;background-size:cover;background-position:center;background-color:#9873f3;background-blend-mode: multiply; background-image: url(../static/images/vltc.jpg);display:flex;justify-content:center;align-items:center">
+    <div class="container py-5 text-center">
+        <h2 class="pt-3 text-white">All Job Postings</h2>
     </div>
+</section>
+<div class="container py-5 mb-3">
+    
     {% for i in jobdata %}
     <div class="card p-3 job-name mb-2" style="border-radius:12px;">
         <div class="card-body">

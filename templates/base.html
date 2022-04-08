@@ -13,8 +13,8 @@
     <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" type="image/png" />
     <link rel="stylesheet" href="{% static 'OwlCarousel2-2.3.4 2/dist/assets/owl.carousel.min.css' %}" />
     <link rel="stylesheet" href="{% static 'OwlCarousel2-2.3.4 2/dist/assets/owl.theme.default.min.css' %}" />
-    <link rel="stylesheet" type="text/css" href="{% static 'styles2.css' %}?{% now "U" %}"/>
-    <script src="{% static 'main.js' %}?{% now "U" %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'styles2.css' %}?{% now " U" %}" />
+    <script src="{% static 'main.js' %}?{% now " U" %}"></script>
 
     <title>CeL MNIT Jaipur</title>
 </head>
@@ -23,23 +23,25 @@
     <section id="top-section" style="background-color: #5624d0">
         <div class="container" style="padding: 11px 0">
             <div class="row">
-                <div class="col-md-5 col-lg-5 text-white">
+                <div class="col-md-6 col-lg-6 text-white">
                     <span style="margin-right: 20px" class="font-roboto"><i class="bi bi-envelope text-white"
                             style="margin-right: 7px; font-size: 14px"></i>
                         cel@mnit.ac.in</span>
-
-                    <a href="tel:+919206980980" class="text-white font-roboto"
-                        style="text-decoration: none; margin-right: 20px"><i style="margin-right: 7px; font-size: 14px"
-                            class="bi bi-telephone-outbound"></i>
-                        (+91) 999999999</a>
+                        {% if request.user.username == 'admin' %}
+                        <span style="margin-right: 20px" class="font-roboto"><i class="bi bi-bank text-white"
+                            style="margin-right: 7px; font-size: 14px"></i>
+                        <a class="text-white" style="text-decoration: none" href="/admin">Admin Panel</a></span>
+                        {% endif %}
                     {% if user.is_authenticated %}
                     <a class="text-white font-roboto" style="text-decoration: none">
                         <i style="margin-right: 7px; font-size: 14px" class="fa fa-user"></i>
                         Welcome <b>{{request.user.username | upper}}</b></a>
 
                     {% endif %}
+                    
                 </div>
-                <div class="col-md-7 col-lg-7 text-white" style="text-align: right">
+                
+                <div class="col-md-6 col-lg-6 text-white" style="text-align: right">
                     <span style="margin-right: 20px" class="font-roboto">
                         <i class="bi text-white bi-calendar" style="margin-right: 7px; font-size: 14px"></i>
                         <span id="dnt"></span>
@@ -78,23 +80,18 @@
                             <a class="nav-link active" aria-current="page" href="/">HOME</a>
                         </li>
                         <li class="nav-item" style="margin-right: 27px">
-                            <a class="nav-link active" aria-current="page" href="#about">ABOUT</a>
+                            <a class="nav-link active" aria-current="page" href="/about">ABOUT</a>
                         </li>
-                        <li class="nav-item" style="margin-right: 27px">
-                            <a class="nav-link active" aria-current="page" href="#skills">SKILLS</a>
-                        </li>
-                        <li class="nav-item" style="margin-right: 27px">
-                            <a class="nav-link active" aria-current="page" href="#footer">CONTACT</a>
-                        </li>
+                        
                         <li class="nav-item" style="margin-right: 27px">
                             <a class="nav-link active" aria-current="page" href="/allquestions">BLOG</a>
                         </li>
-                        {% if request.user.username == 'admin' %}
+                        {% comment %} {% if request.user.username == 'admin' %}
                         <li class="nav-item" style="margin-right: 27px">
                             <a class="nav-link active" aria-current="page" href="/allusers">USERS</a>
                         </li>
-                        {% endif %}
-                        
+                        {% endif %} {% endcomment %}
+
                         <li class="nav-item dropdown" style="margin-right: 27px">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false" onmouseover="this.innerHTML='PTCELL -'"
@@ -107,6 +104,7 @@
                                     <a class="dropdown-item" href="/alljobs" style="padding: 10px 30px !important">
                                         ALL JOBS</a>
                                 </li>
+                                {% if request.user.userprofile.usertype == 'alumni' or request.user.username == 'admin' %}
                                 <li>
                                     <a class="dropdown-item" href="/addjob" style="padding: 10px 30px !important">
                                         POST NEW JOB</a>
@@ -115,7 +113,8 @@
                                     <a class="dropdown-item" href="/experience" style="padding: 10px 30px !important">
                                         EXPERIENCE</a>
                                 </li>
-                                
+                                {% endif %}
+
                             </ul>
                         </li>
                         <li class="nav-item dropdown" style="margin-right: 27px">
@@ -126,16 +125,42 @@
                             </a>
                             <ul class="dropdown-menu" style="left: -95%" aria-labelledby="navbarDropdown"
                                 style="padding: 15px 0">
+                                {% if request.user.userprofile.usertype == 'teacher' or request.user.username == 'admin' %}
                                 <li>
                                     <a class="dropdown-item" href="/addcourse" style="padding: 10px 30px !important">
                                         ADD COURSES</a>
                                 </li>
+                                {% endif %}
                                 <li>
                                     <a class="dropdown-item" href="/allcourses" style="padding: 10px 30px !important">
                                         VIEW COURSES</a>
                                 </li>
-                                
+
                             </ul>
+                        </li>
+                        <li class="nav-item dropdown" style="margin-right: 27px">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false" onmouseover="this.innerHTML='PODCASTS -'"
+                                onmouseout="this.innerHTML='PODCASTS +'">
+                                PODCASTS <span>+</span>
+                            </a>
+                            <ul class="dropdown-menu" style="left: -95%" aria-labelledby="navbarDropdown"
+                                style="padding: 15px 0">
+                                {% if request.user.userprofile.usertype == 'teacher' or request.user.username == 'admin' %}
+                                <li>
+                                    <a class="dropdown-item" href="/addpodcast" style="padding: 10px 30px !important">
+                                        ADD PODCAST</a>
+                                </li>
+                                {% endif %}
+                                <li>
+                                    <a class="dropdown-item" href="/allpodcasts" style="padding: 10px 30px !important">
+                                        ALL PODCASTS</a>
+                                </li>
+
+                            </ul>
+                        </li>
+                        <li class="nav-item" style="margin-right: 27px">
+                            <a class="nav-link active" aria-current="page" href="#footer">CONTACT</a>
                         </li>
 
                         <!-- <button type="button" class="btn btn-primary px-4" style="background-color:#5624d0 !important; padding: 5px 0 !important;border: 0 !important; border-radius:0 !important; ">Apply Now</button> -->
@@ -164,8 +189,8 @@
                 </div>
             </div>
         </nav>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="fixed-menu"> 
-            <div class="container" style="padding-left: 0 !important">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow" id="fixed-menu">
+            <div class="container py-2" style="padding-left: 0 !important">
                 <div>
                     <a class="navbar-brand" href="/"><img class="logo img-fluid"
                             src="{% static 'images/ecell-logo.png' %}" alt="" /></a>
@@ -181,18 +206,18 @@
                             <a class="nav-link active" aria-current="page" href="/">HOME</a>
                         </li>
                         <li class="nav-item" style="margin-right: 27px">
-                            <a class="nav-link active" aria-current="page" href="/#about">ABOUT</a>
+                            <a class="nav-link active" aria-current="page" href="/about">ABOUT</a>
                         </li>
-                        <li class="nav-item" style="margin-right: 27px">
-                            <a class="nav-link active" aria-current="page" href="#skills">SKILLS</a>
-                        </li>
-                        <li class="nav-item" style="margin-right: 27px">
-                            <a class="nav-link active" aria-current="page" href="/#footer">CONTACT</a>
-                        </li>
+                        
                         <li class="nav-item" style="margin-right: 27px">
                             <a class="nav-link active" aria-current="page" href="/allquestions">BLOG</a>
                         </li>
-                        
+                        {% comment %} {% if request.user.username == 'admin' %}
+                        <li class="nav-item" style="margin-right: 27px">
+                            <a class="nav-link active" aria-current="page" href="/allusers">USERS</a>
+                        </li>
+                        {% endif %} {% endcomment %}
+
                         <li class="nav-item dropdown" style="margin-right: 27px">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false" onmouseover="this.innerHTML='PTCELL -'"
@@ -205,6 +230,7 @@
                                     <a class="dropdown-item" href="/alljobs" style="padding: 10px 30px !important">
                                         ALL JOBS</a>
                                 </li>
+                                {% if request.user.userprofile.usertype == 'alumni' or request.user.username == 'admin' %}
                                 <li>
                                     <a class="dropdown-item" href="/addjob" style="padding: 10px 30px !important">
                                         POST NEW JOB</a>
@@ -213,7 +239,8 @@
                                     <a class="dropdown-item" href="/experience" style="padding: 10px 30px !important">
                                         EXPERIENCE</a>
                                 </li>
-                                
+                                {% endif %}
+
                             </ul>
                         </li>
                         <li class="nav-item dropdown" style="margin-right: 27px">
@@ -224,16 +251,42 @@
                             </a>
                             <ul class="dropdown-menu" style="left: -95%" aria-labelledby="navbarDropdown"
                                 style="padding: 15px 0">
+                                {% if request.user.userprofile.usertype == 'teacher' or request.user.username == 'admin' %}
                                 <li>
                                     <a class="dropdown-item" href="/addcourse" style="padding: 10px 30px !important">
                                         ADD COURSES</a>
                                 </li>
+                                {% endif %}
                                 <li>
                                     <a class="dropdown-item" href="/allcourses" style="padding: 10px 30px !important">
                                         VIEW COURSES</a>
                                 </li>
-                                
+
                             </ul>
+                        </li>
+                        <li class="nav-item dropdown" style="margin-right: 27px">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false" onmouseover="this.innerHTML='PODCASTS -'"
+                                onmouseout="this.innerHTML='PODCASTS +'">
+                                PODCASTS <span>+</span>
+                            </a>
+                            <ul class="dropdown-menu" style="left: -95%" aria-labelledby="navbarDropdown"
+                                style="padding: 15px 0">
+                                {% if request.user.userprofile.usertype == 'teacher' or request.user.username == 'admin' %}
+                                <li>
+                                    <a class="dropdown-item" href="/addpodcast" style="padding: 10px 30px !important">
+                                        ADD PODCAST</a>
+                                </li>
+                                {% endif %}
+                                <li>
+                                    <a class="dropdown-item" href="/allpodcasts" style="padding: 10px 30px !important">
+                                        ALL PODCASTS</a>
+                                </li>
+
+                            </ul>
+                        </li>
+                        <li class="nav-item" style="margin-right: 27px">
+                            <a class="nav-link active" aria-current="page" href="#footer">CONTACT</a>
                         </li>
 
                         <!-- <button type="button" class="btn btn-primary px-4" style="background-color:#5624d0 !important; padding: 5px 0 !important;border: 0 !important; border-radius:0 !important; ">Apply Now</button> -->
@@ -282,10 +335,7 @@
             font-family: 'Roboto';
             margin-bottom: 57px;
           ">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati
-                nobis quisquam, blanditiis rem, tenetur ipsum magnam facere nisi
-                dolores, accusamus at ea aliquam hic rerum commodi mollitia?
-                Architecto, perspiciatis vero.
+          The centre for e-Learning (CeL), established at the ICT Centre, MNIT Jaipur, aims to impart quality education, in the easiest manner, with equitable access to learners across the nation. The main motto of CeL is to digitalize learning by conducting seminars, learning events, workshops in different fields.
             </p>
             <ul style="padding-left: 0; list-style: none; padding-bottom: 40px">
                 <li>
@@ -300,28 +350,11 @@
                     padding-right: 40px;
                     font-weight: 400;
                     font-family: 'Roboto';
-                  ">264/L3, Kavuri Hills Phase 2, HiTech City, Madhapur,
-                                Telangana, India, PIN: 500033</span>
+                  ">MNIT Prabha Bhawan, Naya Bass, Jhalana Gram, Malviya Nagar, Jaipur, Rajasthan 302017</span>
                         </div>
                     </div>
                 </li>
-                <li>
-                    <div class="row" style="margin-bottom: 10px; padding-bottom: 26px">
-                        <div class="col-1">
-                            <i style="padding-right: 25px; font-size: 20px; color: #5624d0"
-                                class="bi bi-telephone-outbound"></i>
-                        </div>
-                        <div class="col-11">
-                            <span style="
-                    font-size: 16px;
-                    line-height: 1.7;
-                    padding-right: 40px;
-                    font-weight: 400;
-                    font-family: 'Roboto';
-                  ">(+91) 9206 980 980</span>
-                        </div>
-                    </div>
-                </li>
+                
                 <li>
                     <div class="row" style="margin-bottom: 10px; padding-bottom: 26px">
                         <div class="col-1">
@@ -334,7 +367,7 @@
                     padding-right: 40px;
                     font-weight: 400;
                     font-family: 'Roboto';
-                  ">admission@cel.in</span>
+                  ">cel@mnit.ac.in</span>
                         </div>
                     </div>
                 </li>
@@ -413,89 +446,16 @@
                 font-weight: 400;
                 text-align: justify;
               ">
-                        cel enables students in being capable to develop production grade
-                        application by availing full stack development, Soft skills,
-                        Analytics and project management skills to get a core software job
-                        in the Industry.
+                        The centre for e-Learning (CeL), established at the ICT Centre, MNIT Jaipur, aims to impart quality education, in the easiest manner, with equitable access to learners across the nation.
                     </p>
-                    <a href="" style="
-                padding: 12px 23px;
-                border-radius: 3px;
-                background: #5624d0;
-                font-family: 'Roboto', sans-serif;
-                font-weight: 500;
-                font-size: 16px;
-                color: #fff;
-                text-decoration: none;
-              ">APPLY NOW</a>
-                    <iframe class="mt-3"
+                    
+                    <iframe class="mt-1 shadow"
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3559.2461131261393!2d75.80856051489691!3d26.863920683148656!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396db679c6fbc681%3A0xdcecd2a40276bda2!2sPrabha%20Bhawan%20Mnit%20Jaipur!5e0!3m2!1sen!2sin!4v1633953586825!5m2!1sen!2sin"
-                        style="border: 0; width:100%;" allowfullscreen="" loading="lazy"></iframe>
+                        style="border: 0; width:100%;border-radius:13px" allowfullscreen="" loading="lazy"></iframe>
                 </div>
                 <div class="col-md-3 col-lg-3 mt-2"></div>
                 <div class="col-md-2 col-lg-2 mt-2">
-                    <h4 style="
-                color: #5624d0;
-                font-size: 24px;
-                line-height: 32px;
-                font-weight: 700;
-                text-transform: capitalize;
-                margin-bottom: 30px;
-              ">
-                        Info
-                    </h4>
-                    <ul style="padding-left: 0 !important; list-style: none">
-                        <li>
-                            <a style="
-                    color: black;
-                    text-decoration: none;
-                    font-family: 'Roboto';
-                    line-height: 1.7;
-                    font-weight: 400;
-                    font-size: 16px;
-                  " href="">Home</a>
-                        </li>
-                        <li>
-                            <a style="
-                    color: black;
-                    text-decoration: none;
-                    font-family: 'Roboto';
-                    line-height: 1.7;
-                    font-weight: 400;
-                    font-size: 16px;
-                  " href="">About</a>
-                        </li>
-                        <li>
-                            <a style="
-                    color: black;
-                    text-decoration: none;
-                    font-family: 'Roboto';
-                    line-height: 1.7;
-                    font-weight: 400;
-                    font-size: 16px;
-                  " href="">Blog</a>
-                        </li>
-                        <li>
-                            <a style="
-                    color: black;
-                    text-decoration: none;
-                    font-family: 'Roboto';
-                    line-height: 1.7;
-                    font-weight: 400;
-                    font-size: 16px;
-                  " href="">FAQ</a>
-                        </li>
-                        <li>
-                            <a style="
-                    color: black;
-                    text-decoration: none;
-                    font-family: 'Roboto';
-                    line-height: 1.7;
-                    font-weight: 400;
-                    font-size: 16px;
-                  " href="">Contact</a>
-                        </li>
-                    </ul>
+                    
                 </div>
                 <div class="col-md-4 col-lg-4 mt-2">
                     <h4 style="
@@ -525,30 +485,11 @@
                         padding-right: 40px;
                         font-weight: 400;
                         font-family: 'Roboto';
-                      ">264/L3, Kavuri Hills Phase 2, HiTech City, Madhapur, Telangana, India, PIN: 500033</span>
+                      ">MNIT Prabha Bhawan, Naya Bass, Jhalana Gram, Malviya Nagar, Jaipur, Rajasthan 302017</span>
                                 </div>
                             </div>
                         </li>
-                        <li>
-                            <div class="row" style="margin-bottom: 10px; padding-bottom: 26px">
-                                <div class="col-1">
-                                    <i style="
-                        padding-right: 25px;
-                        font-size: 20px;
-                        color: #5624d0;
-                      " class="bi bi-telephone-outbound"></i>
-                                </div>
-                                <div class="col-11">
-                                    <span style="
-                        font-size: 16px;
-                        line-height: 1.7;
-                        padding-right: 40px;
-                        font-weight: 400;
-                        font-family: 'Roboto';
-                      ">(+91) 9999999999</span>
-                                </div>
-                            </div>
-                        </li>
+                        
                         <li>
                             <div class="row" style="margin-bottom: 10px; padding-bottom: 26px">
                                 <div class="col-1">
@@ -565,7 +506,7 @@
                         padding-right: 40px;
                         font-weight: 400;
                         font-family: 'Roboto';
-                      ">admission@cel.in</span>
+                      ">cel@mnit.ac.in</span>
                                 </div>
                             </div>
                         </li>
@@ -596,12 +537,11 @@
             <div style="padding-bottom: 36px"></div>
             <div class="row">
                 <div class="col-6">
-                    © Copyright | 2020 cel Pvt. Ltd. | All Rights Reserved. <br />
-                    <a style="text-decoration: none" href="">Privacy Policy</a> |
-                    <a style="text-decoration: none" href="">Terms of Service</a> | *
-                    Registration Charges Applied
+                    © Copyright | 2022 CeL MNIT Jaipur | All Rights Reserved. <br />
+                    <a style="text-decoration: none; font-size:0.8rem" href="">Privacy Policy</a> 
+                    <a style="text-decoration: none;font-size:0.8rem" href="">Terms of Service</a>
                 </div>
-                <div class="col-6 text-end">
+                <div class="col-6 text-end" style="padding-right:10px;">
                     <i style="
                 background-color: #5624d0;
                 font-size: 15px;
@@ -646,7 +586,7 @@
             </div>
         </div>
     </footer>
-    
+
     <button onclick="topFunction()" id="myBtn" title="Go to top">
         <i class="bi bi-chevron-up"></i>
     </button>
@@ -655,7 +595,7 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous">
-        </script>
+    </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="{% static 'OwlCarousel2-2.3.4 2/dist/owl.carousel.min.js' %}"></script>

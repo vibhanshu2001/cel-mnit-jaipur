@@ -1,11 +1,14 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-
-<div class="container py-5">
-    <div class="text-end">
-        <h2>Add Job Posting</h2>
+{% if user.userprofile.usertype == 'alumni' or user.username == 'admin' %}
+<section style="background-repeat:no-repeat;background-size:cover;background-position:center;background-color:#9873f3;background-blend-mode: multiply; background-image: url(../static/images/vltc.jpg);display:flex;justify-content:center;align-items:center">
+    <div class="container py-5 text-center">
+        <h2 class="pt-3 text-white">Add Job</h2>
     </div>
+</section>
+<div class="container py-5">
+    
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="form-group pb-3">
@@ -22,7 +25,7 @@
         </div>
         <div class="form-group pb-3">
             <label for="jobdesc">Job Description</label>
-            <input type="text" class="form-control" placeholder="" name="jobdesc" required/>
+            <textarea type="text" class="form-control" placeholder="" name="jobdesc" required/></textarea>
         </div>
 
         <div class="form-group pb-3">
@@ -38,6 +41,13 @@
         </div>
     </form>
 </div>
+{% else %}
+<div class="container py-3">
+    <div class="alert alert-danger m-0 text-center" style="border: 0 !important;">
+        You are not authorised to add Job on portal.
+    </div>
+</div>
+{% endif %}
 {% endblock content %}
 
 

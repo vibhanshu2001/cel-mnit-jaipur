@@ -1,13 +1,17 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="text-center">
-    <h2>CeL Blog</h2>
-</div>
+<section style="background-repeat:no-repeat;background-size:cover;background-position:center;background-color:#9873f3;background-blend-mode: multiply; background-image: url(../static/images/vltc.jpg);display:flex;justify-content:center;align-items:center">
+  <div class="container py-5 text-center">
+      <h2 class="pt-3 text-white">Blog</h2>
+  </div>
+</section>
+{% if user.is_authenticated %}
 <div class="container py-3">
   <div class="text-end">
     <a class="btn btn-primary" style="text-decoration: none" href="/new-question"><i class="fa fa-plus"></i> Add new</a>
   </div>
 </div>
+{% endif %}
 
 
 <section class="container">

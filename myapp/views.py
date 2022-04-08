@@ -5,15 +5,17 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from .models import CourseUpload, RegisterCourse, ExperienceUpload, Question, Response, JobUpload
+from .models import CourseUpload, RegisterCourse, ExperienceUpload, Question, Response, JobUpload, UserProfile,PodcastUpload
 from django.views.generic import View
-from .forms import CourseForm,NewQuestionForm, NewResponseForm, NewReplyForm
+from .forms import NewQuestionForm, NewResponseForm, NewReplyForm, ExtendedUserCreationForm, UserProfileForm,PodcastUploadForm, CourseUploadForm, ExperienceUploadForm
 from django.utils.decorators import method_decorator
 from django.contrib.auth.forms import UserCreationForm
 
 # Create your views here.
 def index(request):
-    jobdata = JobUpload.objects.all()
+    jobdata = JobUpload.objects.last()
+    questions = Question.objects.last()
+    print(questions)
     data = CourseUpload.objects.all()
     if request.method == 'POST':
         register_course = RegisterCourse()
@@ -24,37 +26,60 @@ def index(request):
             register_course.save()
         else:
             print('already registered')
-    return render(request, 'index.html',{'data':data,'jobdata':jobdata})
+    return render(request, 'index.html',{'data':data,'jobdata':jobdata,'questions': questions})
 
 
-@login_required(login_url='handleLogin')
+# @login_required(login_url='handleLogin')
+# def addcourse(request):
+#     if request.method == 'POST':
+#         course_upload = CourseUpload()
+#         course_upload.coursetitle = request.POST['coursetitle']
+#         course_upload.thumbnailcourse = request.FILES.get('thumbnailcourses')
+#         course_upload.coursedesc = request.POST['coursedesc']
+#         course_upload.courselink = request.POST['courselink']
+#         course_upload.category = request.POST['category']
+#         course_upload.uploadedby = request.user.username
+#         course_upload.save()
+        
+#         return redirect('allcourses')
+#     return render(request, 'addcourses.html')
+@login_required(login_url='login')
 def addcourse(request):
     if request.method == 'POST':
-        course_upload = CourseUpload()
-        course_upload.coursetitle = request.POST['coursetitle']
-        course_upload.thumbnailcourse = request.FILES.get('thumbnailcourses')
-        course_upload.coursedesc = request.POST['coursedesc']
-        course_upload.courselink = request.POST['courselink']
-        course_upload.category = request.POST['category']
-        course_upload.uploadedby = request.user.username
-        course_upload.save()
-        
-        return redirect('allcourses')
-    return render(request, 'addcourses.html')
+        form = CourseUploadForm(request.POST,request.FILES)
+        if form.is_valid():
+            new_record = form.save(commit=False)
+            new_record.uploadedby = request.user.username
+            new_record.save()
+            return redirect('/allcourses')
+    form = CourseUploadForm()
+    return render(request,'addcourses.html',{'form':form})
 
-@login_required(login_url='handleLogin')
+
+
+@login_required(login_url='login')
+def addpodcast(request):
+    if request.method == 'POST':
+        form = PodcastUploadForm(request.POST,request.FILES)
+        if form.is_valid():
+            new_record = form.save(commit=False)
+            new_record.save()
+            return redirect('/allpodcasts')
+    form = PodcastUploadForm()
+    return render(request,'addpodcasts.html',{'form':form})
+
 def about(request):
     return render(request, 'about.html')
-@login_required(login_url='handleLogin')
+@login_required(login_url='login')
 def allusers(request):
     User = get_user_model()
     users = User.objects.all()
     return render(request, 'allusers.html',{'users':users})
-@login_required(login_url='handleLogin')
+@login_required(login_url='login')
 def alljobs(request):
     jobdata = JobUpload.objects.all()
     return render(request, 'alljobs.html',{'jobdata':jobdata})
-@login_required(login_url='handleLogin')
+@login_required(login_url='login')
 def addJob(request):
     if request.method == 'POST':
         job_upload = JobUpload()
@@ -66,7 +91,7 @@ def addJob(request):
         job_upload.education = request.POST['education']
         job_upload.save()
         
-        return redirect('/')
+        return redirect('/alljobs')
     return render(request, 'addjob.html')
 @method_decorator(login_required, name='dispatch')
 class CourseView(View):
@@ -77,26 +102,29 @@ class CourseView(View):
   return render(request, 'coursedetail.html', {'coursedetail':coursedetail,'data':data})
 
 
-@login_required(login_url='handleLogin')
+
+@login_required(login_url='login')
 def addexperience(request):
     if request.method == 'POST':
-        exp_upload = ExperienceUpload()
-        exp_upload.studentname = request.POST['studentname']
-        exp_upload.branch = request.POST['branch']
-        exp_upload.passoutyear = request.POST['passoutyear']
-        exp_upload.companyplaced = request.POST['companyplaced']
-        exp_upload.experience = request.POST['experience']
-        exp_upload.save()
-        
-        return redirect('experience')
-    return render(request, 'addexperience.html')
+        form = ExperienceUploadForm(request.POST,request.FILES)
+        if form.is_valid():
+            new_record = form.save(commit=False)
+            new_record.save()
+            return redirect('/experience')
+    form = ExperienceUploadForm()
+    return render(request,'addexperience.html',{'form':form})
+
 def experience(request):
     data = ExperienceUpload.objects.all()
     return render(request, 'ptcellexperience.html',{'data':data})
-@login_required(login_url='handleLogin')
+
 def allcourses(request):
     allcoursedata = CourseUpload.objects.all()
     return render(request, 'allcourses.html',{'allcoursedata':allcoursedata})
+@login_required(login_url='login')
+def allpodcasts(request):
+    allpodcastdata = PodcastUpload.objects.all()
+    return render(request, 'allpodcasts.html',{'allpodcastdata':allpodcastdata})
 
 def handleLogin(request):
     if request.method == 'POST':
@@ -107,36 +135,47 @@ def handleLogin(request):
             login(request, user)
             return redirect('index')
         else:
-            return redirect('handleLogin')
+            return redirect('login')
 
     return render(request, 'login.html')
 def handleLogout(request):
     logout(request)
-    return redirect('handleLogin')
-
+    return redirect('login')
 def signUp(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
+        form = ExtendedUserCreationForm(request.POST)
+        profile_form = UserProfileForm(request.POST)
+        if form.is_valid() and profile_form.is_valid():
+            user = form.save()
+            profile = profile_form.save(commit=False)
+            profile.user = user
+            profile.save()
             username = form.cleaned_data.get('username')
-            raw_password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=raw_password)
+            password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=password)
             login(request, user)
             return redirect('index')
     else:
-        form = UserCreationForm()
-    return render(request, 'signup.html', {'form': form})
+        form = ExtendedUserCreationForm()
+        profile_form = UserProfileForm()
+        print('not happering')
+    context = {'form': form,'profile_form':profile_form}
+    return render(request, 'signup.html',context)        
+
+
+
+
+
 @method_decorator(login_required, name='dispatch')
 class EditView(View):
   def get(self, request,id):
     courseUpload = CourseUpload.objects.get(id=id)
-    fm = CourseForm(instance=courseUpload)
+    fm = CourseUploadForm(instance=courseUpload)
     return render(request,'updatecourse.html',{'form':fm})
   
   def post(self, request,id):
     courseUpload = CourseUpload.objects.get(id=id)
-    form = CourseForm(request.POST,instance=courseUpload)
+    form = CourseUploadForm(request.POST,request.FILES,instance=courseUpload)
     if form.is_valid():
       form.save()
     else:

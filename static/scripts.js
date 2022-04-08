@@ -1,6 +1,6 @@
 $(document).ready(function () {
     $(".owl-carousel1").owlCarousel({
-      loop: true,
+      loop: false,
       dots: true,
       items: 8,
       autoplay: true,
@@ -20,14 +20,14 @@ $(document).ready(function () {
         1000: {
           items: 1,
           nav: true,
-          loop: true,
+          loop: false,
         },
       },
     });
   });
   $(document).ready(function () {
     $(".owl-carousel2").owlCarousel({
-      loop: true,
+      loop: false,
       dots: true,
       items: 5,
       autoplay: true,
@@ -47,14 +47,14 @@ $(document).ready(function () {
         1000: {
           items: 5,
           nav: true,
-          loop: true,
+          loop: false,
         },
       },
     });
   });
   $(document).ready(function () {
     $(".owl-carousel3").owlCarousel({
-      loop: true,
+      loop: false,
       dots: true,
       items: 8,
       autoplay: true,
@@ -74,14 +74,14 @@ $(document).ready(function () {
         1000: {
           items: 4,
           nav: true,
-          loop: true,
+          loop: false,
         },
       },
     });
   });
   $(document).ready(function () {
     $(".owl-carousel4").owlCarousel({
-      loop: true,
+      loop: false,
       dots: true,
       items: 8,
       autoplay: true,
@@ -101,14 +101,14 @@ $(document).ready(function () {
         1000: {
           items: 4,
           nav: true,
-          loop: true,
+          loop: false,
         },
       },
     });
   });
   $(document).ready(function () {
     $(".owl-carousel5").owlCarousel({
-      loop: true,
+      loop: false,
       dots: true,
       items: 8,
       autoplay: true,
@@ -128,14 +128,14 @@ $(document).ready(function () {
         1000: {
           items: 5,
           nav: true,
-          loop: true,
+          loop: false,
         },
       },
     });
   });
   $(document).ready(function () {
     $(".owl-carousel7").owlCarousel({
-      loop: true,
+      loop: false,
       dots: true,
       items: 8,
       autoplay: true,
@@ -155,7 +155,7 @@ $(document).ready(function () {
         1000: {
           items: 5,
           nav: true,
-          loop: true,
+          loop: false,
         },
       },
     });

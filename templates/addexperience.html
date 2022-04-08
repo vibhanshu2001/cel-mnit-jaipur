@@ -1,42 +1,65 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
 {% block content %}
 <section style="height:50vh; background-image: url(../static/images/kisibhinaam.jpg);">
 </section>
+{% if user.userprofile.usertype == 'alumni' or user.username == 'admin' %}
 <div class="container py-5">
     <div class="text-end">
         <h2>Add Your Interview Experience</h2>
     </div>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        <div class="form-group pb-3">
-            <label for="studentname">Student Name</label>
-            <input type="text" class="form-control"  name="studentname" required/>
-        </div>
-        <div class="form-group pb-3">
-            <label for="branch">Branch</label>
-            <input type="text" class="form-control"  name="branch" required/>
-        </div>
-        <div class="form-group pb-3">
-            <label for="passoutyear">Passout Year</label>
-            <input type="text" class="form-control"  name="passoutyear" required/>
-        </div>
-        <div class="form-group pb-3">
-            <label for="companyplaced">Company Placed</label>
-            <input type="text" class="form-control"  name="companyplaced" required/>
-        </div>
-        <div class="form-group pb-3">
-            <label for="experience">Experience</label>
-            <input type="text" class="form-control" name="experience" required/>
+        <div class="card admission-card mb-3">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4 mb-0">
+                        {{ form.passoutyear|as_crispy_field }}
+                    </div>
+                    <div class="col-md-4 mb-0">
+                        {{ form.studentname|as_crispy_field }}
+                    </div>
+                    <div class="col-md-4 mb-0">
+                        {{ form.branch|as_crispy_field }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 mb-0">
+                        {{ form.studentphoto|as_crispy_field }}
+                    </div>
+                    
+                </div>
+                <div class="row">
+                    <div class="col-12 mb-0">
+                        {{ form.experience|as_crispy_field }}
+                    </div>
+                    
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-0">
+                        {{ form.companyplaced|as_crispy_field }}
+                    </div>
+                    <div class="col-md-6 mb-0">
+                        {{ form.studentcollege|as_crispy_field }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Add" class="btn btn-primary">
+                </div>
+            </div>
         </div>
         
-        
-        
-        <div class="form-group">
-            <input type="submit" value="Add" class="btn btn-primary">
-        </div>
     </form>
 </div>
+{% else %}
+<div class="container py-3">
+    <div class="alert alert-danger m-0 text-center" style="border: 0 !important;">
+        You are not authorised to add experience.
+    </div>
+</div>
+{% endif %}
 {% endblock content %}
 
 

@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+    .card {
+        border-radius: 10px !important;
+        overflow: hidden;
+    }
+</style>
+
+<section style="background-repeat:no-repeat;background-size:cover;background-position:center;background-color:#9873f3;background-blend-mode: multiply; background-image: url(../static/images/vltc.jpg);display:flex;justify-content:center;align-items:center">
+    <div class="container py-5 text-center">
+        <h2 class="pt-3 text-white">All Podcasts</h2>
+        <p class="text-white">Choose from  variety of online audio podcasts with new additions published every month</p>
+    </div>
+</section>
+<div class="container py-5">
+    {% comment %} <div class="text-end">
+        <h2>All Podcasts</h2>
+    </div> {% endcomment %}
+    <div class="row">
+        <div class="col-sm-12 mb-3">
+            <input type="text" id="myFilter" class="form-control p-2 text-center" onkeyup="myFunction()" placeholder="Search for podcasts.." style="border-radius: 5px;">
+          </div>
+    </div>
+    <div id="alertdanger" class="alert alert-danger mt-3" role="alert" style="display:none;border: 0 !important;">
+        No results found!!
+    </div>
+    <div class="row" id="myItems">
+        
+        {% for i in allpodcastdata %}
+        
+        <div class="col-md-4 col-lg-4 col-12 mt-4">
+            <div class="card h-100">
+                <img class="img-fluid" src="{{i.podcastthumbnail.url}}" class="card-img-top" alt="not loaded" style="height: 12rem;width: 100%;">
+                <div class="card-body">
+                    <span class="badge bg-danger">{{i.podcastcategory}}</span>
+                    <h5 class="mt-2 card-title"><a href="#" style="text-decoration: none;color: #5624d0">{{i.podcasttitle}}</a></h5>
+                    <p class="m-0 p-0 text-muted carddesc" style="font-size:0.9rem">{{i.podcastdesc}}</p>
+                    <b>Speaker: </b><span style="color: #5624d0;" class="cardspeaker">{{i.podcastspeaker}}</span><br>
+                    <b>Organisation: </b><span style="color: #5624d0;" class="cardorg">{{i.organisationofspeaker}}</span><br>
+                    
+                </div>
+                <div class="card-footer text-center" style="background-color: #fff !important">
+                    <audio controls style="width: 100%;">
+                        <source src="{{i.podcastaudiofile.url}}" type="audio/mp3">
+                        <!-- <source src="horse.mp3" type="audio/mpeg"> -->
+                      Your browser does not support the audio element.
+                      </audio>
+                      <div>
+                          <span style="font-size:0.8rem;">{{i.podcastdateadded}}</span>
+                      </div>
+                </div>
+            </div>
+        </div>
+
+        {% endfor %}
+    </div>
+</div>
+<script>
+    function myFunction() {
+    var input, filter, cards, cardContainer, h5, title, i;
+    input = document.getElementById("myFilter");
+    filter = input.value.toUpperCase();
+    cardContainer = document.getElementById("myItems");
+    cards = cardContainer.getElementsByClassName("col-12");
+    for (i = 0; i < cards.length; i++) {
+        title = cards[i].querySelector(".card-body h5.card-title");
+        title2 = cards[i].querySelector(".card-body p.carddesc");
+        title3 = cards[i].querySelector(".card-body span.cardspeaker");
+        title4 = cards[i].querySelector(".card-body span.cardorg");
+        if (title.innerText.toUpperCase().indexOf(filter) > -1) {
+            cards[i].style.display = "flex";
+            document.getElementById("alertdanger").style.display = "none";
+        }else if(title2.innerText.toUpperCase().indexOf(filter) > -1){
+            cards[i].style.display = "flex";
+            document.getElementById("alertdanger").style.display = "none";
+        }else if(title3.innerText.toUpperCase().indexOf(filter) > -1){
+            cards[i].style.display = "flex";
+            document.getElementById("alertdanger").style.display = "none";
+        }else if(title4.innerText.toUpperCase().indexOf(filter) > -1){
+            cards[i].style.display = "flex";
+            document.getElementById("alertdanger").style.display = "none";
+        } else {
+            cards[i].style.display = "none";
+            document.getElementById("alertdanger").style.display = "flex";
+        }
+    }
+}
+</script>
+
+{% endblock content %}

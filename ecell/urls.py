@@ -15,8 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-
+from django.contrib.auth import views as auth_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('myapp.urls')),
+    path('reset_password/',auth_views.PasswordResetView.as_view(),name='reset_password'),
+    path('reset_password_sent/',auth_views.PasswordResetDoneView.as_view(),name='password_reset_done'),
+    path('reset/<uidb64>/<token>/',auth_views.PasswordResetConfirmView.as_view(),name='password_reset_confirm'),
+    path('reset_password_complete/',auth_views.PasswordResetCompleteView.as_view(),name='password_reset_complete'),
+
 ]
+admin.site.site_header = 'Centre for E-Learning, MNIT Jaipur'                    # default: "Django Administration"
+admin.site.index_title = 'Admin Panel - CEL'                 # default: "Site administration"
+admin.site.site_title = 'MNIT Jaipur'

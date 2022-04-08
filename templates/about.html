@@ -1,1 +1,115 @@
-about page
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+    .img-shadow:hover{
+        box-shadow:
+  0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+  0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+  0 12.5px 10px rgba(0, 0, 0, 0.06),
+  0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+  0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+  0 100px 80px rgba(0, 0, 0, 0.12)
+    }
+</style>
+<section style="background-repeat:no-repeat;background-size:cover;background-position:center;background-color:#9873f3;background-blend-mode: multiply; background-image: url(../static/images/vltc.jpg);display:flex;justify-content:center;align-items:center">
+    <div class="container py-5 text-center">
+        <h2 class="pt-3 text-white">About CeL MNIT</h2>
+    </div>
+</section>
+<section>
+    <div class="container py-5 text-center">
+        
+        <div class="card p-3 mt-3" style="border-radius: 10px;">
+            <div class="card-body" style="color: #666666;letter-spacing:0.6px;line-height:1.6">
+                <span style="font-size:2rem">T</span>he centre for e-Learning (CeL), established at the ICT Centre, MNIT Jaipur, aims to impart quality
+                education, in the easiest manner, with equitable access to learners across the nation. The main motto of
+                CeL is to digitalize learning by conducting seminars, learning events, workshops in different fields.
+                The portal will offer video lectures (recorded as well as live series), interview experiences of placed
+                students, and many more, to enable students to learn at their own pace and pursue their interests.
+                <br>
+                Everyone does not have the same view of the world, and their understanding of something may differ
+                dramatically from yours. Sometimes you can even create something awesome in your career by asking their
+                thoughts or inputs on something you might not even know or have heard of. CeL will give you chance to
+                grow, to be open to new ideas, new ways of doing things, or new ways of thinking.
+                <br>
+                Learn Higher also states that meeting new people can offer encouragement, solutions to common problems,
+                and advice for how to handle challenges. CeL will provide you a great way to meet other people in your
+                area with shared interests.
+            </div>
+        </div>
+    </div>
+</section>
+<section style="background-color: rgb(245, 245, 245);">
+    <div class="container py-5 text-center">
+        <div class="text-center">
+            <h2>TEAM MEMBERS</h2>
+        <p class="text-muted text-center" >With us you will have the peace of mind knowing that your dream home project is in the hands of a licensed fully insured building company.</p>
+        </div>
+        <div class="card p-3 mt-3" style="border-radius: 10px;border: 0 !important;">
+            <div class="card-body text-start" style="color: #666666;letter-spacing:0.6px;line-height:1.6">
+                <h3 class="text-dark">Mentors</h3>
+                <div class="row mt-3">
+                    <div class="col-md-4 col-lg-4 text-center">
+                        <img style="height: 15rem;border-radius: 10px;width: 15rem;" src="https://eldalab.in/static/media/priyanka-harjule.00e5cd4f.webp" alt="" class="img-fluid img-shadow"><br>
+                        <h5 class="mt-3 text-dark">Dr. Priyanka Harjule</h5>
+                        <a style="text-decoration: none" href="mailto:priyanka.maths@iiitkota.ac.in">Contact</a>
+                    </div>
+                    <div class="col-md-4 col-lg-4 text-center">
+                        <img style="height: 15rem;border-radius: 10px;width: 15rem;" src="https://eldalab.in/static/media/basant-agarwal.da47f0c4.webp" alt="" class="img-fluid img-shadow"><br>
+                        <h5 class="mt-3 text-dark">Dr. Basant Agarwal</h5>
+                        <a style="text-decoration: none" href="mailto:basant.cse@iiitkota.ac.in">Contact</a>
+                    </div>
+                    <div class="col-md-4 col-lg-4 text-center">
+                        <img style="height: 15rem;border-radius: 10px;width: 15rem;" src="http://mnit.ac.in/PortalProfile/images/faculty/mnitjas321.png" alt="" class="img-fluid img-shadow"><br>
+                        <h5 class="mt-3 text-dark">Dr. Aashish Tripathi</h5>
+                        <a style="text-decoration: none" href="mailto:ashish.cse@mnit.ac.in">Contact</a>
+                    </div>
+                </div>
+                <h3 class="text-dark">Core Team</h3>
+                
+                <div class="row mt-3">
+                    <div class="col-md-4 col-lg-4 text-center">
+                        <img style="height: 15rem;border-radius: 10px;width: 15rem;" src="https://alumni.mnit.ac.in/assets/images/team/charu.jpg" alt="" class="img-fluid img-shadow"><br>
+                        <h5 class="mt-3 text-dark">Charu Bansal</h5>
+                        <a style="text-decoration: none" href="mailto:2019uec1014@mnit.ac.in">2019UEC1014</a>
+                    </div>
+                    <div class="col-md-4 col-lg-4 text-center">
+                        <img style="height: 15rem;border-radius: 10px;width: 15rem;" src="https://avatars.githubusercontent.com/u/64217477?v=4" alt="" class="img-fluid img-shadow"><br>
+                        <h5 class="mt-3 text-dark">Vibhanshu Garg</h5>
+                        <a style="text-decoration: none" href="mailto:2019uec1697@mnit.ac.in">2019UEC1697</a>
+                    </div>
+                    
+                    <div class="col-md-4 col-lg-4 text-center">
+                        <img style="height: 15rem;border-radius: 10px;width: 15rem;" src="{% static 'images/deepakshukla.png' %}" alt="" class="img-fluid img-shadow"><br>
+                        <h5 class="mt-3 text-dark">Deepak Shukla</h5>
+                        <a style="text-decoration: none" href="mailto:2019uce1685@mnit.ac.in">2019UCE1685</a>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-4 col-lg-4 text-center">
+                        <img style="height: 15rem;border-radius: 10px;width: 15rem;" src="{% static 'images/rakesh.JPG' %}" alt="" class="img-fluid img-shadow"><br>
+                        <h5 class="mt-3 text-dark">Rakesh Moond</h5>
+                        <a style="text-decoration: none" href="mailto:2019uce1596@mnit.ac.in">2019UCE1596</a>
+                    </div>
+                    <div class="col-md-4 col-lg-4 text-center">
+                        <img style="height: 15rem;border-radius: 10px;width: 15rem;" src="{% static 'images/gaurav.PNG' %}" alt="" class="img-fluid img-shadow"><br>
+                        <h5 class="mt-3 text-dark">Gaurav Kargwal</h5>
+                        <!-- <a style="text-decoration: none" href="mailto:2019uec1014@mnit.ac.in">2019UEC1014</a> -->
+                    </div>
+                    <div class="col-md-4 col-lg-4 text-center">
+                        <img style="height: 15rem;border-radius: 10px;width: 15rem;" src="{% static 'images/amansukh.jpeg' %}" alt="" class="img-fluid img-shadow"><br>
+                        <h5 class="mt-3 text-dark">Aman Sukhwal</h5>
+                        <a style="text-decoration: none" href="mailto:2019uch1585@mnit.ac.in">2019UCH1585</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+                    
+                    
+{% endblock content %}

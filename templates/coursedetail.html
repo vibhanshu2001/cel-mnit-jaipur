@@ -1,79 +1,276 @@
-
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+<style>
+    .accordion-body{
+        height:60vh !important;
+        padding:0 !important;
+    }
+    iframe{
+        width: 100%;
+        height: 60vh;
+
+    }
+    .accordion-button:not(.collapsed){
+        color: #fff !important;
+        background-color: #5624d0 !important;
+    }
+    .accordion-button:not(.collapsed)::after{
+        background-image: url(https://has-to-be.com/wp-content/uploads/2020/04/up.png) !important;
+        transform: rotate(360deg);
+    }
+    .btn-outline-primary:hover{
+        background-color: #5624d0 !important;
+        color: #fff !important;
+    }
+</style>
 <section class="container py-5">
     <div class="row">
-        <div class="col-md-6 col-lg-6 order-md-2 order-lg-2 text-end">
-            <img src="{{MEDIA_URL}}/{{coursedetail.thumbnailcourse}}" alt="" class="img-fluid" style="height: 22rem;width: 100%;border-radius: 15px;">
+        <div class="col-md-6 col-lg-6 order-md-2 order-lg-2 text-end" style="display:flex;justify-content:center;align-items:end;flex-direction:column;">
+            {% if request.user.username == coursedetail.uploadedby %}
+                                <div style="display:flex;" class="mt-3">
+                                    <a href="/updatecourse/{{coursedetail.id}}"
+                                        class="mr-3 btn btn-sm btn-outline-primary me-2" style="border-color: #5624d0 !important;color: #5624d0">Update</a>
+                                    <form action="{% url 'deletecourse' coursedetail.id %}" method="POST">
+                                        {%csrf_token%}
+                                        
+                                        <input style="border:0 !important;" class="btn btn-danger btn-sm" type="submit"
+                                            value="Delete">
+                                    </form>
+                                </div>
+                                {% endif %}
+            <img src="{{coursedetail.thumbnailcourse.url}}" alt="" class="img-fluid mt-2"
+                style="height: 22rem;width: 100%;border-radius: 15px;">
         </div>
-        <div class="col-md-6 col-lg-6 order-md-1 order-lg-1" style="display: flex; flex-direction: column;justify-content: center;align-items: start;">
+        <div class="col-md-6 col-lg-6 order-md-1 order-lg-1"
+            style="display: flex; flex-direction: column;justify-content: center;align-items: start;">
+            <small><i class="bi bi-calendar"></i> {{coursedetail.dateadded}}</small>
             <small style="color: red;">{{coursedetail.category | upper}}</small>
             <h2>{{coursedetail.coursetitle}}</h2>
             <p class="text-muted">{{coursedetail.coursedesc}}</p>
             <div>
                 <i class="fa fa-star" style="color: gold;"></i>
-                    <i class="fa fa-star" style="color: gold"></i>
-                    <i class="fa fa-star " style="color: gold"></i>
-                    <i class="fa fa-star  text-muted"></i>
-                    <i class="fa fa-star text-muted"></i>
+                <i class="fa fa-star" style="color: gold"></i>
+                <i class="fa fa-star " style="color: gold"></i>
+                <i class="fa fa-star " style="color: gold"></i>
+                <i class="fa fa-star text-muted"></i>
             </div>
-            <a href="{{coursedetail.courselink}}" class="btn btn-primary mt-3">Watch on YouTube</a>
+            <a href="#playlistcourse" class="btn btn-primary mt-3">Go to Playlist</a>
         </div>
     </div>
-    
 
-</section>
-<section>
-    <div class="container py-5">
-        <h2 class=py-4>Explore courses in other <span style="color:#5624d0">Categories</span> </h2>
-        <div class="owl-carousel owl-carousel5 ">
-            {% for i in data %}
-            {% if i.category != coursedetail.category %}
-            <div class="card blog-card p-3"
-                style=" border-radius: 0 !important;box-shadow: 0 5px 20px rgb(34 34 34 / 10%); border-color: #5624d0;">
-                <div class="card-img-top">
-                    <img src="{{MEDIA_URL}}/{{i.thumbnailcourse}}" alt="" class="img-fluid"
-                        style="height:10rem; width:100%;">
+
+    <h4 class="mt-3 text-end">About <span style="color:#5624d0">Instructor</span></h4>
+    <div class="card mt-3" style="border-radius: 13px;">
+        <div class="card-body ">
+            <div class="row">
+                <div class="col-md-3 col-lg-3 text-center">
+                    <img class="img-fluid rounded-circle" style="height: 10rem;width: 10rem;" src="{{coursedetail.courseinstructorpicture.url}}" alt=""><br>
+                    <p class="mt-3 mb-0" style="font-weight: bold;">{{coursedetail.courseinstructor}}</p>
                 </div>
-                <div class="card-body">
-                    <h3 style="font-size: 20px;;font-family: 'Poppins';"><a href="{% url 'coursedetail' i.id %}"
-                            style="font-size: 20px;line-height:0px;font-weight: 600;color: #1c1b1b;text-decoration: none;">{{i.coursetitle}}
-                        </a></h3>
-
-                    <div style="height:60px; overflow:scroll">
-                        <p class=text-muted style="font-size:15px">{{i.coursedesc}} </p>
-                    </div>
-                    <i class="fa fa-star mt-2" style="color: gold;"></i>
-                    <i class="fa fa-star" style="color: gold"></i>
-                    <i class="fa fa-star " style="color: gold"></i>
-                    <i class="fa fa-star  text-muted"></i>
-                    <i class="fa fa-star text-muted"></i> <br>
-                    <small style="color:red">{{i.category}}</small><br>
-                    <small><i class="bi bi-calendar"></i> {{i.dateadded}}</small>
+                <div class="col-md-9 col-lg-9" style="display: flex;justify-content:center;align-items:center;flex-direction:column">
                     
-                    {% if request.user.username == i.uploadedby %}
-                                <div style="display:flex;" class="mt-3">
-                                    <a href="/updatecourse/{{i.id}}"
-                                        class="mr-3 btn btn-sm btn-outline-secondary me-2">Update</a>
-                                    <form action="{% url 'deletecourse' i.id %}" method="POST">
-                                        {%csrf_token%}
-                                        <input style="border:0 !important;" class="btn btn-danger btn-sm" type="submit"
-                                            value="Delete">
-                                    </form>
-                                </div>{% endif %}
-
+                    <p class="text-muted">{{coursedetail.aboutcourseinstructor}}</p>
                 </div>
-
             </div>
-            {% endif %}
-            {% endfor %}
-
-
-
-
         </div>
     </div>
+    <h4 class="mt-3 text-end">Course <span style="color:#5624d0">Prerequisites</span></h4>
+    <div class="card mt-3" style="border-radius: 13px;">
+        <div class="card-body ">
+            <div class="row">
+                
+                <div class="col-md-12 col-lg-12" style="display: flex;justify-content:center;align-items:center;flex-direction:column">
+                    
+                    <p class="text-muted">{{coursedetail.courseprerequisites}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="playlistcourse"></div>
+    <h4 class="mt-3 text-end">Course <span style="color:#5624d0">Playlist</span></h4>
+    <div class="accordion mt-3" id="accordionExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="moduleOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                    aria-expanded="true" aria-controls="collapseOne">
+                    {{coursedetail.modulename1}}
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="moduleOne"
+                data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <div class="embed-responsive embed-responsive-4by3">
+                        <iframe class="embed-responsive-item" src="{{coursedetail.modulelink1}}"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="moduleTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    {{coursedetail.modulename2}}
+                </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="moduleTwo"
+                data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe class="embed-responsive-item" src="{{coursedetail.modulelink1}}"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% if not coursedetail.modulename3 is none %}
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="moduleThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    {{coursedetail.modulename3}}
+                </button>
+            </h2>
+            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="moduleThree"
+                data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe class="embed-responsive-item" src="{{coursedetail.modulelink3}}"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% if not coursedetail.modulename4 is none %}
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="moduleFour">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                    {{coursedetail.modulename4}}
+                </button>
+            </h2>
+            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="moduleFour"
+                data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe class="embed-responsive-item" src="{{coursedetail.modulelink4}}"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% if not coursedetail.modulename5 is none %}
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="moduleFive">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                    {{coursedetail.modulename5}}
+                </button>
+            </h2>
+            <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="moduleFive"
+                data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe class="embed-responsive-item" src="{{coursedetail.modulelink5}}"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% if not coursedetail.modulename6 is none %}
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="moduleSix">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                    {{coursedetail.modulename6}}
+                </button>
+            </h2>
+            <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="moduleSix"
+                data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe class="embed-responsive-item" src="{{coursedetail.modulelink6}}"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% if not coursedetail.modulename7 is none %}
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="moduleSeven">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                    {{coursedetail.modulename7}}
+                </button>
+            </h2>
+            <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="moduleSeven"
+                data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe class="embed-responsive-item" src="{{coursedetail.modulelink7}}"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% if not coursedetail.modulename8 is none %}
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="moduleEight">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                    {{coursedetail.modulename8}}
+                </button>
+            </h2>
+            <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="moduleEight"
+                data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe class="embed-responsive-item" src="{{coursedetail.modulelink8}}"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% if not coursedetail.modulename9 is none %}
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="moduleNine">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+                    {{coursedetail.modulename9}}
+                </button>
+            </h2>
+            <div id="collapseNine" class="accordion-collapse collapse" aria-labelledby="moduleNine"
+                data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe class="embed-responsive-item" src="{{coursedetail.modulelink9}}"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% if not coursedetail.modulename10 is none %}
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="moduleTen">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
+                    {{coursedetail.modulename10}}
+                </button>
+            </h2>
+            <div id="collapseTen" class="accordion-collapse collapse" aria-labelledby="moduleTen"
+                data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe class="embed-responsive-item" src="{{coursedetail.modulelink10}}"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        
+
+    </div>
+
+
 </section>
 
 

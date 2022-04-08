@@ -1,264 +1,72 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<section style="height:50vh; background-image: url(../static/images/kisibhinaam.jpg);">
+<section style="background-repeat:no-repeat;background-size:cover;background-position:center;background-color:#9873f3;background-blend-mode: multiply; background-image: url(../static/images/vltc.jpg);display:flex;justify-content:center;align-items:center">
+    <div class="container py-5 text-center">
+        <h2 class="pt-3 text-white">All Courses</h2>
+    </div>
 </section>
 <section id="header" class="py-5">
     <div class="container">
-        <h2 class="pt-3">A broad selection of courses</h2>
-        <p>Choose from 155,000 online video courses with new additions published every month</p>
-        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-            <li class="nav-item" role="presentation">
-                <button class="nav-link course-link active" id="pills-home-tab" data-bs-toggle="pill"
-                    data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
-                    aria-selected="true">Web Development</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile"
-                    type="button" role="tab" aria-controls="pills-profile" aria-selected="false">ML</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact"
-                    type="button" role="tab" aria-controls="pills-contact" aria-selected="false">AI</button>
-            </li>
-        </ul>
-        <div class="tab-content" id="pills-tabContent">
-            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-                <div class="container">
-                    <div class="owl-carousel owl-carousel4 ">
-                        {% for i in allcoursedata %}
-                        {% if i.category == 'web development' %}
-                        <div class="card blog-card"
-                            style="border: 0 !important; border-radius: 0 !important;box-shadow: 0 5px 20px rgb(34 34 34 / 10%);">
-                            <div class="card-img-top">
-                                <img src="{{MEDIA_URL}}/{{i.thumbnailcourse}}" alt="" class="img-fluid"
-                                    style="height:13rem; width:100%;">
-                            </div>
-                            <div class="card-body" style="padding: 33px 30px 25px;">
-                                <h3 style="margin:6px 0 15px;font-size: 28px;;font-family: 'Poppins';"><a href="{% url 'coursedetail' i.id %}"
-                                        style="font-size: 20px;line-height:0px;font-weight: 600;color: #1c1b1b;text-decoration: none;">{{i.coursetitle}}</a>
-                                </h3>
-                                <p class="text-muted">{{i.coursedesc | truncatechars:20}}
-                                    <a style="text-decoration: none" href="#" data-toggle="tooltip" data-placement="top"
-                                        title="{{i.coursedesc}}">
-                                        <small style="color: red;">more</small>
-                                    </a>
-                                </p>
-                                <div style="display: flex;justify-content: space-between;align-items: center;">
-                                    <div
-                                        style="display: flex;flex-direction: row;justify-content: center;align-items: center;">
-                                        <img style="max-width: 40px;border-radius: 100%;margin-right: 8px;height: auto;"
-                                            class="img-fluid" src="{% static 'images/favicon.png' %}" alt=""><span
-                                            style="font-size: 15px;color: #1c1b1b;">cel</span>
-                                    </div>
-                                    <div><i class="bi bi-clock" style="color: #67c27c;margin-right: 5px;"></i><span
-                                            style="color: #1c1b1b;font-size: 14px;">{{i.dateadded}}</span></div>
-                                </div>
-
-
-                                {% if request.user.username == i.uploadedby %}
-                                <div style="display:flex;" class="mt-3">
-                                    <a href="/updatecourse/{{i.id}}"
-                                        class="mr-3 btn btn-sm btn-outline-secondary me-2">Update</a>
-                                    <form action="{% url 'deletecourse' i.id %}" method="POST">
-                                        {%csrf_token%}
-                                        <input style="border:0 !important;" class="btn btn-danger btn-sm" type="submit"
-                                            value="Delete">
-                                    </form>
-                                </div>
-                                {% endif %}
-                                <div class="text-end">
-                                    <a style="text-decoration: none;" href="{% url 'coursedetail' i.id %}"><small>View Details</small></a>
-                                </div>
-                            </div>
-
-                        </div>
-                        {% endif %}
-
-
-                        {% endfor %}
-
-
-
-
-                    </div>
-                </div>
-            </div>
-            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                <div class="container">
-                    <div class="owl-carousel owl-carousel4 ">
-                        {% for i in allcoursedata %}
-                        {% if i.category == 'ml' %}
-                        <div class="card blog-card"
-                            style="border: 0 !important; border-radius: 0 !important;box-shadow: 0 5px 20px rgb(34 34 34 / 10%);">
-                            <div class="card-img-top">
-                                <img src="{{MEDIA_URL}}/{{i.thumbnailcourse}}" alt="" class="img-fluid"
-                                    style="height:13rem; width:100%;">
-                            </div>
-                            <div class="card-body" style="padding: 33px 30px 25px;">
-                                <h3 style="margin:6px 0 15px;font-size: 28px;;font-family: 'Poppins';"><a href="{% url 'coursedetail' i.id %}"
-                                        style="font-size: 20px;line-height:0px;font-weight: 600;color: #1c1b1b;text-decoration: none;">{{i.coursetitle}}</a>
-                                </h3>
-                                <p class="text-muted">{{i.coursedesc | truncatechars:20}}
-                                    <a style="text-decoration: none" href="#" data-toggle="tooltip" data-placement="top"
-                                        title="{{i.coursedesc}}">
-                                        <small style="color: red;">more</small>
-                                    </a>
-                                </p>
-                                <div style="display: flex;justify-content: space-between;align-items: center;">
-                                    <div
-                                        style="display: flex;flex-direction: row;justify-content: center;align-items: center;">
-                                        <img style="max-width: 40px;border-radius: 100%;margin-right: 8px;height: auto;"
-                                            class="img-fluid" src="{% static 'images/favicon.png' %}" alt=""><span
-                                            style="font-size: 15px;color: #1c1b1b;">cel</span>
-                                    </div>
-                                    <div><i class="bi bi-clock" style="color: #67c27c;margin-right: 5px;"></i><span
-                                            style="color: #1c1b1b;font-size: 14px;">{{i.dateadded}}</span></div>
-                                </div>
-
-
-                                {% if request.user.username == i.uploadedby %}
-                                <div style="display:flex;" class="mt-3">
-                                    <a href="/updatecourse/{{i.id}}"
-                                        class="mr-3 btn btn-sm btn-outline-secondary me-2">Update</a>
-                                    <form action="{% url 'deletecourse' i.id %}" method="POST">
-                                        {%csrf_token%}
-                                        <input style="border:0 !important;" class="btn btn-danger btn-sm" type="submit"
-                                            value="Delete">
-                                    </form>
-                                </div>{% endif %}
-                                <div class="text-end">
-                                    <a style="text-decoration: none;" href="{% url 'coursedetail' i.id %}"><small>View Details</small></a>
-                                </div>
-
-                            </div>
-
-                        </div>
-                        {% endif %}
-
-
-                        {% endfor %}
-
-
-
-
-                    </div>
-                </div>
-            </div>
-            <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
-                <div class="container">
-                    <div class="owl-carousel owl-carousel4 ">
-                        {% for i in allcoursedata %}
-                        {% if i.category == 'ai' %}
-                        <div class="card blog-card"
-                            style="border: 0 !important; border-radius: 0 !important;box-shadow: 0 5px 20px rgb(34 34 34 / 10%);">
-                            <div class="card-img-top">
-                                <img src="{{MEDIA_URL}}/{{i.thumbnailcourse}}" alt="" class="img-fluid"
-                                    style="height:13rem; width:100%;">
-                            </div>
-                            <div class="card-body" style="padding: 33px 30px 25px;">
-                                <h3 style="margin:6px 0 15px;font-size: 28px;;font-family: 'Poppins';"><a href="{% url 'coursedetail' i.id %}"
-                                        style="font-size: 20px;line-height:0px;font-weight: 600;color: #1c1b1b;text-decoration: none;">{{i.coursetitle}}</a>
-                                </h3>
-                                <p class="text-muted">{{i.coursedesc | truncatechars:20}}
-                                    <a style="text-decoration: none" href="#" data-toggle="tooltip" data-placement="top"
-                                        title="{{i.coursedesc}}">
-                                        <small style="color: red;">more</small>
-                                    </a>
-                                </p>
-                                <div style="display: flex;justify-content: space-between;align-items: center;">
-                                    <div
-                                        style="display: flex;flex-direction: row;justify-content: center;align-items: center;">
-                                        <img style="max-width: 40px;border-radius: 100%;margin-right: 8px;height: auto;"
-                                            class="img-fluid" src="{% static 'images/favicon.png' %}" alt=""><span
-                                            style="font-size: 15px;color: #1c1b1b;">cel</span>
-                                    </div>
-                                    <div><i class="bi bi-clock" style="color: #67c27c;margin-right: 5px;"></i><span
-                                            style="color: #1c1b1b;font-size: 14px;">{{i.dateadded}}</span></div>
-                                </div>
-
-
-                                {% if request.user.username == i.uploadedby %}
-                                <div style="display:flex;" class="mt-3">
-                                    <a href="/updatecourse/{{i.id}}"
-                                        class="mr-3 btn btn-sm btn-outline-secondary me-2">Update</a>
-                                    <form action="{% url 'deletecourse' i.id %}" method="POST">
-                                        {%csrf_token%}
-                                        <input style="border:0 !important;" class="btn btn-danger btn-sm" type="submit"
-                                            value="Delete">
-                                    </form>
-                                </div>{% endif %}
-                                <div class="text-end">
-                                    <a style="text-decoration: none;" href="{% url 'coursedetail' i.id %}"><small>View Details</small></a>
-                                </div>
-                            </div>
-
-                        </div>
-                        {% endif %}
-
-
-                        {% endfor %}
-
-
-
-
-                    </div>
-                </div>
-            </div>
+        
+        <input type="text" id="myFilter" class="form-control p-2 text-center" onkeyup="myFunction()" placeholder="Search for courses.." style="border-radius: 5px;">
+        <div class="row" id="myItems">
+        <div id="alertdanger" class="alert alert-danger mt-3" role="alert" style="display:none;border: 0 !important;">
+            No results found!!
         </div>
-
-    </div>
-</section>
-
-<section>
-    <div class="container py-5">
-        <h2 class=py-4>All courses by <span style="color:#5624d0">"MNIT Jaipur"</span> </h2>
-        <div class="owl-carousel owl-carousel5 ">
             {% for i in allcoursedata %}
-            <div class="card blog-card p-3"
-                style=" border-radius: 0 !important;box-shadow: 0 5px 20px rgb(34 34 34 / 10%); border-color: #5624d0;">
-                <div class="card-img-top">
-                    <img src="{{MEDIA_URL}}/{{i.thumbnailcourse}}" alt="" class="img-fluid"
-                        style="height:10rem; width:100%;">
-                </div>
-                <div class="card-body">
-                    <h3 style="font-size: 20px;;font-family: 'Poppins';"><a href="{% url 'coursedetail' i.id %}"
-                            style="font-size: 20px;line-height:0px;font-weight: 600;color: #1c1b1b;text-decoration: none;">{{i.coursetitle}}
-                        </a></h3>
-
-                    <div style="height:60px; overflow:scroll">
-                        <p class=text-muted style="font-size:15px">{{i.coursedesc}} </p>
+            
+            <div class="col-md-3 col-lg-3 col-12 mt-4">
+                <div class="card h-100 shadow" style="border-radius: 10px;overflow:hidden;border: 0 !important;">
+                    <img class="img-fluid" src="{{i.thumbnailcourse.url}}" class="card-img-top" alt="not loaded" style="height: 12rem;width: 100%;">
+                    <div class="card-body">
+                        
+                        <div class="text-end">
+                            <span style="font-size: 0.7rem;">{{i.dateadded}}</span> <br>
+                            <span class="badge bg-danger card-category">{{i.category}}</span></div>
+                        <h5 class="mt-2 "><a class="card-title" style="text-decoration: none;color: #000">{{i.coursetitle}}</a></h5>
+                        <p class="mt-2 card-uploadedby text-muted" style="font-size:0.9rem">{{i.uploadedby}}</p>
+                        
+                        
                     </div>
-                    <i class="fa fa-star mt-2" style="color: gold;"></i>
-                    <i class="fa fa-star" style="color: gold"></i>
-                    <i class="fa fa-star " style="color: gold"></i>
-                    <i class="fa fa-star  text-muted"></i>
-                    <i class="fa fa-star text-muted"></i> <br>
-                    <small style="color:red">{{i.category}}</small><br>
-                    <small><i class="bi bi-calendar"></i> {{i.dateadded}}</small>
+                    <div class="card-footer text-end text-white" style="background-color: #5624d0 !important;cursor:pointer;">
+                        <a class="text-white" style="text-decoration:none;" href="{% url 'coursedetail' i.id %}">Go to Course</a>
+                    </div>
                     
-                    {% if request.user.username == i.uploadedby %}
-                                <div style="display:flex;" class="mt-3">
-                                    <a href="/updatecourse/{{i.id}}"
-                                        class="mr-3 btn btn-sm btn-outline-secondary me-2">Update</a>
-                                    <form action="{% url 'deletecourse' i.id %}" method="POST">
-                                        {%csrf_token%}
-                                        <input style="border:0 !important;" class="btn btn-danger btn-sm" type="submit"
-                                            value="Delete">
-                                    </form>
-                                </div>{% endif %}
-                                
-
                 </div>
-
             </div>
+    
             {% endfor %}
-
-
-
-
         </div>
     </div>
 </section>
+<script>
+    function myFunction() {
+    var input, filter, cards, cardContainer, h5, title, i;
+    input = document.getElementById("myFilter");
+    filter = input.value.toUpperCase();
+    cardContainer = document.getElementById("myItems");
+    cards = cardContainer.getElementsByClassName("col-12");
+    for (i = 0; i < cards.length; i++) {
+        title = cards[i].querySelector(".card-title");
+        title2 = cards[i].querySelector(".card-category");
+        title3 = cards[i].querySelector(".card-uploadedby");
+        if (title.innerText.toUpperCase().indexOf(filter) > -1) {
+            cards[i].style.display = "flex";
+            document.getElementById("alertdanger").style.display = "none";
+        }else if (title2.innerText.toUpperCase().indexOf(filter) > -1) {
+            cards[i].style.display = "flex";
+            document.getElementById("alertdanger").style.display = "none";
+        }else if (title3.innerText.toUpperCase().indexOf(filter) > -1) {
+            cards[i].style.display = "flex";
+            document.getElementById("alertdanger").style.display = "none";
+        }else {
+            cards[i].style.display = "none";
+            document.getElementById("alertdanger").style.display = "flex";
+        }
+    }
+}
+</script>
+
 
 {% endblock content %}

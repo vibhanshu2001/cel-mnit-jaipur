@@ -1,9 +1,6 @@
-
-
-
-
-
 {% load static %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
 <!doctype html>
 <html lang="en">
 
@@ -16,351 +13,477 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" type="image/png">
-    <link rel="stylesheet" href="{% static 'OwlCarousel2-2.3.4 2/dist/assets/owl.carousel.min.css' %}">
-    <link rel="stylesheet" href="{% static 'OwlCarousel2-2.3.4 2/dist/assets/owl.theme.default.min.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
 
+    <title>Create account - CEL</title>
+    <style>
+        *{
+  font-family: 'Poppins', sans-serif !important;
+}
+/* @extend display-flex; */
+display-flex, .display-flex, .display-flex-center {
+  display: flex;
+  display: -webkit-flex; }
 
-    <title>CeL MNIT Jaipur</title>
+/* @extend list-type-ulli; */
+list-type-ulli {
+  list-style-type: none;
+  margin: 0;
+  padding: 0; }
+
+/* Montserrat-300 - latin */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 300;
+  src: url("../fonts/montserrat/Montserrat-Light.ttf");
+  /* IE9 Compat Modes */ }
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/montserrat/Montserrat-Regular.ttf");
+  /* IE9 Compat Modes */ }
+@font-face {
+  font-family: 'Montserrat';
+  font-style: italic;
+  font-weight: 400;
+  src: url("../fonts/montserrat/Montserrat-Italic.ttf");
+  /* IE9 Compat Modes */ }
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  src: url("../fonts/montserrat/Montserrat-Medium.ttf");
+  /* IE9 Compat Modes */ }
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  src: url("../fonts/montserrat/Montserrat-SemiBold.ttf");
+  /* IE9 Compat Modes */ }
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  src: url("../fonts/montserrat/Montserrat-Bold.ttf");
+  /* IE9 Compat Modes */ }
+@font-face {
+  font-family: 'Montserrat';
+  font-style: italic;
+  font-weight: 700;
+  src: url("../fonts/montserrat/Montserrat-BoldItalic.ttf");
+  /* IE9 Compat Modes */ }
+@font-face {
+  font-family: 'Montserrat';
+  font-style: italic;
+  font-weight: 900;
+  src: url("../fonts/montserrat/montserrat-v12-latin-900.ttf"), url("../fonts/montserrat/montserrat-v12-latin-900.eot") format("embedded-opentype"), url("../fonts/montserrat/montserrat-v12-latin-900.svg") format("woff2"), url("../fonts/montserrat/montserrat-v12-latin-900.woff") format("woff"), url("../fonts/montserrat/montserrat-v12-latin-900.woff2") format("truetype"); }
+a:focus, a:active {
+  text-decoration: none;
+  outline: none;
+  transition: all 300ms ease 0s;
+  -moz-transition: all 300ms ease 0s;
+  -webkit-transition: all 300ms ease 0s;
+  -o-transition: all 300ms ease 0s;
+  -ms-transition: all 300ms ease 0s; }
+
+input, select, textarea {
+  outline: none;
+  appearance: unset !important;
+  -moz-appearance: unset !important;
+  -webkit-appearance: unset !important;
+  -o-appearance: unset !important;
+  -ms-appearance: unset !important; }
+
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+  appearance: none !important;
+  -moz-appearance: none !important;
+  -webkit-appearance: none !important;
+  -o-appearance: none !important;
+  -ms-appearance: none !important;
+  margin: 0; }
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  -o-box-shadow: none !important;
+  -ms-box-shadow: none !important; }
+
+input[type=checkbox] {
+  appearance: checkbox !important;
+  -moz-appearance: checkbox !important;
+  -webkit-appearance: checkbox !important;
+  -o-appearance: checkbox !important;
+  -ms-appearance: checkbox !important; }
+
+input[type=radio] {
+  appearance: radio !important;
+  -moz-appearance: radio !important;
+  -webkit-appearance: radio !important;
+  -o-appearance: radio !important;
+  -ms-appearance: radio !important; }
+
+img {
+  max-width: 100%;
+  height: auto; }
+
+figure {
+  margin: 0; }
+
+p {
+  margin-bottom: 0px;
+  font-size: 15px;
+  color: #777; }
+
+h2 {
+  line-height: 1.66;
+  margin: 0;
+  padding: 0;
+  font-weight: 900;
+  color: #222;
+  font-family: 'Montserrat';
+  font-size: 24px;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 40px; }
+
+.clear {
+  clear: both; }
+
+body {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #222;
+  font-weight: 400;
+  font-family: 'Montserrat';
+  /* background-image: url("../images/login-bg.jpg"); */
+  background-repeat: no-repeat;
+  background-size: cover;
+  -moz-background-size: cover;
+  -webkit-background-size: cover;
+  -o-background-size: cover;
+  -ms-background-size: cover;
+  background-position: center center;
+  padding: 115px 0; }
+
+.container {
+  width: 660px;
+  position: relative;
+  margin: 0 auto; }
+
+.display-flex {
+  justify-content: space-between;
+  -moz-justify-content: space-between;
+  -webkit-justify-content: space-between;
+  -o-justify-content: space-between;
+  -ms-justify-content: space-between;
+  align-items: center;
+  -moz-align-items: center;
+  -webkit-align-items: center;
+  -o-align-items: center;
+  -ms-align-items: center; }
+
+.display-flex-center {
+  justify-content: center;
+  -moz-justify-content: center;
+  -webkit-justify-content: center;
+  -o-justify-content: center;
+  -ms-justify-content: center;
+  align-items: center;
+  -moz-align-items: center;
+  -webkit-align-items: center;
+  -o-align-items: center;
+  -ms-align-items: center; }
+
+.position-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%); }
+
+.login-content {
+  background: #fff;
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -o-border-radius: 10px;
+  -ms-border-radius: 10px;
+  padding: 50px 85px; }
+
+.form-group {
+  overflow: hidden;
+  margin-bottom: 20px; }
+
+.form-control {
+  width: 100%;
+  border: 1px solid #ebebeb;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  padding: 17px 20px;
+  box-sizing: border-box;
+  font-size: 14px;
+  font-weight: 500;
+  color: #222; }
+  .form-control::-webkit-input-placeholder {
+    color: #999; }
+  .form-control::-moz-placeholder {
+    color: #999; }
+  .form-control:-ms-input-placeholder {
+    color: #999; }
+  .form-control:-moz-placeholder {
+    color: #999; }
+  .form-control::-webkit-input-placeholder {
+    font-weight: 500; }
+  .form-control::-moz-placeholder {
+    font-weight: 500; }
+  .form-control:-ms-input-placeholder {
+    font-weight: 500; }
+  .form-control:-moz-placeholder {
+    font-weight: 500; }
+  .form-control:focus {
+    border: 1px solid transparent;
+    -webkit-border-image-source: -webkit-linear-gradient(to right, #9face6, #5624d0);
+    -moz-border-image-source: -moz-linear-gradient(to right, #9face6, #5624d0);
+    -o-border-image-source: -o-linear-gradient(to right, #9face6, #5624d0);
+    border-image-source: linear-gradient(to right, #9face6, #5624d0);
+    -webkit-border-image-slice: 1;
+    border-image-slice: 1;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -o-border-radius: 5px;
+    -ms-border-radius: 5px;
+    background-origin: border-box;
+    background-clip: content-box, border-box; }
+    .form-control:focus::-webkit-input-placeholder {
+      color: #222; }
+    .form-control:focus::-moz-placeholder {
+      color: #222; }
+    .form-control:focus:-ms-input-placeholder {
+      color: #222; }
+    .form-control:focus:-moz-placeholder {
+      color: #222; }
+
+      .form-select {
+  width: 100%;
+  border: 1px solid #ebebeb;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  padding: 17px 20px;
+  box-sizing: border-box;
+  font-size: 14px;
+  font-weight: 500;
+  color: #222; }
+  .form-select::-webkit-input-placeholder {
+    color: #999; }
+  .form-select::-moz-placeholder {
+    color: #999; }
+  .form-select:-ms-input-placeholder {
+    color: #999; }
+  .form-select:-moz-placeholder {
+    color: #999; }
+  .form-select::-webkit-input-placeholder {
+    font-weight: 500; }
+  .form-select::-moz-placeholder {
+    font-weight: 500; }
+  .form-select:-ms-input-placeholder {
+    font-weight: 500; }
+  .form-select:-moz-placeholder {
+    font-weight: 500; }
+  .form-select:focus {
+    border: 1px solid transparent;
+    -webkit-border-image-source: -webkit-linear-gradient(to right, #9face6, #5624d0);
+    -moz-border-image-source: -moz-linear-gradient(to right, #9face6, #5624d0);
+    -o-border-image-source: -o-linear-gradient(to right, #9face6, #5624d0);
+    border-image-source: linear-gradient(to right, #9face6, #5624d0);
+    -webkit-border-image-slice: 1;
+    border-image-slice: 1;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -o-border-radius: 5px;
+    -ms-border-radius: 5px;
+    background-origin: border-box;
+    background-clip: content-box, border-box; }
+    .form-select:focus::-webkit-input-placeholder {
+      color: #222; }
+    .form-select:focus::-moz-placeholder {
+      color: #222; }
+    .form-select:focus:-ms-input-placeholder {
+      color: #222; }
+    .form-select:focus:-moz-placeholder {
+      color: #222; }
+
+.form-submit {
+  width: 100%;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  padding: 17px 20px;
+  box-sizing: border-box;
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  text-transform: uppercase;
+  border: none;
+  background-image: -moz-linear-gradient(to left, #5624d0, #5624d0);
+  background-image: -ms-linear-gradient(to left, #5624d0, #5624d0);
+  background-image: -o-linear-gradient(to left, #5624d0, #5624d0);
+  background-image: -webkit-linear-gradient(to left, #5624d0, #5624d0);
+  background-image: linear-gradient(to left, #5624d0, #5624d0); }
+
+input[type=checkbox]:not(old) {
+  width: 2em;
+  margin: 0;
+  padding: 0;
+  font-size: 1em;
+  display: none; }
+
+input[type=checkbox]:not(old) + label {
+  display: inline-block;
+  margin-top: 7px;
+  margin-bottom: 25px; }
+
+input[type=checkbox]:not(old) + label > span {
+  display: inline-block;
+  width: 13px;
+  height: 13px;
+  margin-right: 15px;
+  margin-bottom: 3px;
+  border: 1px solid #ebebeb;
+  border-radius: 2px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -o-border-radius: 2px;
+  -ms-border-radius: 2px;
+  background: white;
+  background-image: -moz-linear-gradient(white, white);
+  background-image: -ms-linear-gradient(white, white);
+  background-image: -o-linear-gradient(white, white);
+  background-image: -webkit-linear-gradient(white, white);
+  background-image: linear-gradient(white, white);
+  vertical-align: bottom; }
+
+input[type=checkbox]:not(old):checked + label > span {
+  background-image: -moz-linear-gradient(white, white);
+  background-image: -ms-linear-gradient(white, white);
+  background-image: -o-linear-gradient(white, white);
+  background-image: -webkit-linear-gradient(white, white);
+  background-image: linear-gradient(white, white); }
+
+input[type=checkbox]:not(old):checked + label > span:before {
+  content: '\f26b';
+  display: block;
+  color: #222;
+  font-size: 11px;
+  line-height: 1.2;
+  text-align: center;
+  font-family: 'Material-Design-Iconic-Font';
+  font-weight: bold; }
+
+.label-agree-term {
+  font-size: 12px;
+  font-weight: 600;
+  color: #555; }
+
+.term-service {
+  color: #555; }
+
+.loginhere {
+  color: #555;
+  font-weight: 500;
+  text-align: center;
+  margin-top: 91px;
+  margin-bottom: 5px; }
+
+.loginhere-link {
+  font-weight: 700;
+  color: #222; }
+
+.field-icon {
+  float: right;
+  margin-right: 17px;
+  margin-top: -32px;
+  position: relative;
+  z-index: 2;
+  color: #555; }
+
+@media screen and (max-width: 768px) {
+  .container {
+    width: calc(100% - 40px);
+    max-width: 100%; } }
+@media screen and (max-width: 480px) {
+  .login-content {
+    padding: 50px 25px; } }
+    </style>
 </head>
 
-<body>
-
-    <section id="top-section" style="background-color: #5624d0;" >
-        <div class="container" style="padding: 11px 0; ">
-            <div class="row">
-                <div class="col-md-5 col-lg-5 text-white">
-                    <span style="margin-right: 20px;" class="font-roboto"><i class="bi bi-envelope text-white"
-                            style="margin-right: 7px;font-size: 14px;"></i>
-                        cel@mnit.ac.in</span>
-
-                    <a href="tel:+919206980980" class="text-white font-roboto" style="text-decoration:none;margin-right: 20px;"><i
-                            style="margin-right: 7px;font-size: 14px;" class="bi bi-telephone-outbound"></i> (+91)
-                        999999999</a>
-                    {% if user.is_authenticated %}
-                    <a class="text-white font-roboto" style="text-decoration:none">
-
-                        <i style="margin-right: 7px;font-size: 14px;" class="fa fa-user"></i>
-                        Welcome <b>{{request.user.username}}</b></a>
-
-                    {% endif %}
-                </div>
-                <div class="col-md-7 col-lg-7 text-white " style="text-align: right;">
-                    <span style="margin-right: 20px;" class="font-roboto"> <i class="bi text-white bi-calendar"
-                            style="margin-right: 7px;font-size: 14px;"></i> <span id="dnt"></span>
-                        <script>
-                            var d = new Date();
-                            var x = new Date(d.setMonth(d.getMonth() - 1)).toLocaleDateString();
-                            document.getElementById("dnt").innerHTML = x;
-                        </script>
-                    </span>
-                    <i class="bi text-white soc-icon bi-facebook" style="margin-right: 15px;font-size: 14px;"></i>
-                    <i class="bi text-white soc-icon bi-instagram" style="margin-right: 15px;font-size: 14px;"></i>
-                    <i class="bi text-white soc-icon bi-twitter" style="margin-right: 15px;font-size: 14px;"></i>
-                    <i class="bi text-white soc-icon bi-linkedin" style="margin-right: 15px;font-size: 14px;"></i>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="navbar" class="container" style="padding-left: 0 !important;">
-
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid" style="padding-left: 0 !important">
-                <div>
-                    <a class="navbar-brand" href="/"><img class="logo img-fluid"
-                            src="{% static 'images/ecell-logo.png' %}" alt="" /></a>
-                </div>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item" style="margin-right: 27px">
-                            <a class="nav-link active" aria-current="page" href="/">HOME</a>
-                        </li>
-                        <li class="nav-item" style="margin-right: 27px">
-                            <a class="nav-link active" aria-current="page" href="#about">ABOUT</a>
-                        </li>
-                        <li class="nav-item" style="margin-right: 27px">
-                            <a class="nav-link active" aria-current="page" href="#skills">SKILLS</a>
-                        </li>
-                        <li class="nav-item" style="margin-right: 27px">
-                            <a class="nav-link active" aria-current="page" href="#footer">CONTACT</a>
-                        </li>
-                        <li class="nav-item" style="margin-right: 27px">
-                            <a class="nav-link active" aria-current="page" href="/allquestions">BLOG</a>
-                        </li>
-                        
-                        <li class="nav-item dropdown" style="margin-right: 27px">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false" onmouseover="this.innerHTML='PTCELL -'"
-                                onmouseout="this.innerHTML='PTCELL +'">
-                                PTCELL <span>+</span>
-                            </a>
-                            <ul class="dropdown-menu" style="left: -95%" aria-labelledby="navbarDropdown"
-                                style="padding: 15px 0">
-                                <li>
-                                    <a class="dropdown-item" href="/alljobs" style="padding: 10px 30px !important">
-                                        ALL JOBS</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="/addjob" style="padding: 10px 30px !important">
-                                        POST NEW JOB</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="/experience" style="padding: 10px 30px !important">
-                                        EXPERIENCE</a>
-                                </li>
-                                
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown" style="margin-right: 27px">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false" onmouseover="this.innerHTML='COURSES -'"
-                                onmouseout="this.innerHTML='COURSES +'">
-                                COURSES <span>+</span>
-                            </a>
-                            <ul class="dropdown-menu" style="left: -95%" aria-labelledby="navbarDropdown"
-                                style="padding: 15px 0">
-                                <li>
-                                    <a class="dropdown-item" href="/addcourse" style="padding: 10px 30px !important">
-                                        ADD COURSES</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="/allcourses" style="padding: 10px 30px !important">
-                                        VIEW COURSES</a>
-                                </li>
-                                
-                            </ul>
-                        </li>
-
-                        <!-- <button type="button" class="btn btn-primary px-4" style="background-color:#5624d0 !important; padding: 5px 0 !important;border: 0 !important; border-radius:0 !important; ">Apply Now</button> -->
-                        <div class="apply-button">
-                            {% if user.is_authenticated %}
-                            <a href="/logout" class="px-4 text-white" style="
-                    text-decoration: none;
-                    font-family: 'Roboto', sans-serif;
-                    font-size: 16px !important;
-                  ">LOGOUT</a>
-                            {% else %}
-                            <a href="/login" class="px-4 text-white" style="
-                    text-decoration: none;
-                    font-family: 'Roboto', sans-serif;
-                    font-size: 16px !important;
-                  ">LOGIN</a>
-                            {% endif %}
-                        </div>
-
-                        <div class="dot-icon">
-                            <a data-bs-toggle="offcanvas" href="#offcanvasExample" role="button"
-                                aria-controls="offcanvasExample"><img class="img-fluid" style="height: 2.5rem"
-                                    src="{% static 'images/dts.png' %}" alt="" /></a>
-                        </div>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="fixed-menu"> 
-            <div class="container" style="padding-left: 0 !important">
-                <div>
-                    <a class="navbar-brand" href="/"><img class="logo img-fluid"
-                            src="{% static 'images/ecell-logo.png' %}" alt="" /></a>
-                </div>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item" style="margin-right: 27px">
-                            <a class="nav-link active" aria-current="page" href="/">HOME</a>
-                        </li>
-                        <li class="nav-item" style="margin-right: 27px">
-                            <a class="nav-link active" aria-current="page" href="/#about">ABOUT</a>
-                        </li>
-                        <li class="nav-item" style="margin-right: 27px">
-                            <a class="nav-link active" aria-current="page" href="#skills">SKILLS</a>
-                        </li>
-                        <li class="nav-item" style="margin-right: 27px">
-                            <a class="nav-link active" aria-current="page" href="/#footer">CONTACT</a>
-                        </li>
-                        <li class="nav-item" style="margin-right: 27px">
-                            <a class="nav-link active" aria-current="page" href="/allquestions">BLOG</a>
-                        </li>
-                        
-                        <li class="nav-item dropdown" style="margin-right: 27px">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false" onmouseover="this.innerHTML='PTCELL -'"
-                                onmouseout="this.innerHTML='PTCELL +'">
-                                PTCELL <span>+</span>
-                            </a>
-                            <ul class="dropdown-menu" style="left: -95%" aria-labelledby="navbarDropdown"
-                                style="padding: 15px 0">
-                                <li>
-                                    <a class="dropdown-item" href="/alljobs" style="padding: 10px 30px !important">
-                                        ALL JOBS</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="/addjob" style="padding: 10px 30px !important">
-                                        POST NEW JOB</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="/experience" style="padding: 10px 30px !important">
-                                        EXPERIENCE</a>
-                                </li>
-                                
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown" style="margin-right: 27px">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false" onmouseover="this.innerHTML='COURSES -'"
-                                onmouseout="this.innerHTML='COURSES +'">
-                                COURSES <span>+</span>
-                            </a>
-                            <ul class="dropdown-menu" style="left: -95%" aria-labelledby="navbarDropdown"
-                                style="padding: 15px 0">
-                                <li>
-                                    <a class="dropdown-item" href="/addcourse" style="padding: 10px 30px !important">
-                                        ADD COURSES</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="/allcourses" style="padding: 10px 30px !important">
-                                        VIEW COURSES</a>
-                                </li>
-                                
-                            </ul>
-                        </li>
-
-                        <!-- <button type="button" class="btn btn-primary px-4" style="background-color:#5624d0 !important; padding: 5px 0 !important;border: 0 !important; border-radius:0 !important; ">Apply Now</button> -->
-                        <div class="apply-button">
-                            {% if user.is_authenticated %}
-                            <a href="/logout" class="px-4 text-white" style="
-                    text-decoration: none;
-                    font-family: 'Roboto', sans-serif;
-                    font-size: 16px !important;
-                  ">LOGOUT</a>
-                            {% else %}
-                            <a href="/login" class="px-4 text-white" style="
-                    text-decoration: none;
-                    font-family: 'Roboto', sans-serif;
-                    font-size: 16px !important;
-                  ">LOGIN</a>
-                            {% endif %}
-                        </div>
-
-                        <div class="dot-icon">
-                            <a data-bs-toggle="offcanvas" href="#offcanvasExample" role="button"
-                                aria-controls="offcanvasExample"><img class="img-fluid" style="height: 2.5rem"
-                                    src="{% static 'images/dts.png' %}" alt="" /></a>
-                        </div>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <div style="width: 520px !important;padding: 25px 30px 50px 50px;" class="offcanvas offcanvas-end" tabindex="-1"
-        id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-        <div class="offcanvas-header" style="justify-content: flex-end;">
-
-            <button type="button" style="border: 0 !important;background-color: transparent !important;"
-                class="text-reset" data-bs-dismiss="offcanvas" aria-label="Close"><img class="img-fluid"
-                    style="height:3rem;" src="{% static 'images/dts.png' %}" alt=""></button>
-        </div>
-        <div class="offcanvas-body">
-            <img class="img-fluid" style="width: 176px;padding-bottom: 55px;" src="{% static 'images/ecell-logo.png' %}"
-                alt="">
-            <p
-                style="font-size: 18px;line-height: 28px;color: #333;font-weight: 400;font-family: 'Roboto';margin-bottom: 57px;">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati nobis quisquam, blanditiis rem,
-                tenetur ipsum magnam facere nisi dolores, accusamus at ea aliquam hic rerum commodi mollitia?
-                Architecto, perspiciatis vero.</p>
-            <ul style="padding-left: 0;list-style: none;padding-bottom: 40px;">
-
-                <li>
-                    <div class="row" style="margin-bottom: 10px;padding-bottom: 26px;">
-                        <div class="col-1">
-                            <i style="padding-right: 25px; font-size: 20px;color: #5624d0;" class="bi bi-geo-alt"></i>
-                        </div>
-                        <div class="col-11">
-                            <span
-                                style=" font-size: 18px;line-height: 1.7;padding-right: 40px;font-weight:400;font-family: 'Roboto';">
-                                Prabha Bhawan, Malaviya National Institute of Technology, Jaipur-302017
-                            </span>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="row" style="margin-bottom: 10px;padding-bottom: 26px;">
-                        <div class="col-1">
-                            <i style="padding-right: 25px; font-size: 20px;color: #5624d0;"
-                                class="bi bi-telephone-outbound"></i>
-                        </div>
-                        <div class="col-11">
-                            <span
-                                style=" font-size: 16px;line-height: 1.7;padding-right: 40px;font-weight:400;font-family: 'Roboto';">(+91)
-                                9999999999</span>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="row" style="margin-bottom: 10px;padding-bottom: 26px;">
-                        <div class="col-1">
-                            <i style="padding-right: 25px; font-size: 20px;color: #5624d0;" class="bi bi-envelope"></i>
-                        </div>
-                        <div class="col-11">
-                            <span
-                                style=" font-size: 16px;line-height: 1.7;padding-right: 40px;font-weight:400;font-family: 'Roboto';">admission@cel.in</span>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="row" style="margin-bottom: 10px;padding-bottom: 26px;">
-                        <div class="col-1">
-                            <i style="padding-right: 25px; font-size: 20px;color: #5624d0;" class="bi bi-clock"></i>
-                        </div>
-                        <div class="col-11">
-                            <span
-                                style=" font-size: 16px;line-height: 1.7;padding-right: 40px;font-weight:400;font-family: 'Roboto';">10:00AM
-                                - 06:00PM</span>
-                        </div>
-                    </div>
-                </li>
-
-            </ul>
-            <i style="background-color: #5624d0;font-size: 15px;border-radius: 3px; width: 30px;height: 30px;line-height: 30px;color: #fff;text-align: center;"
-                class="fa fa-facebook"></i>
-            <i style="background-color: #5624d0;font-size: 15px;border-radius: 3px; width: 30px;height: 30px;line-height: 30px;color: #fff;text-align: center;"
-                class="fa fa-instagram"></i>
-            <i style="background-color: #5624d0;font-size: 15px;border-radius: 3px; width: 30px;height: 30px;line-height: 30px;color: #fff;text-align: center;"
-                class="fa fa-twitter"></i>
-            <i style="background-color: #5624d0;font-size: 15px;border-radius: 3px; width: 30px;height: 30px;line-height: 30px;color: #fff;text-align: center;"
-                class="fa fa-linkedin"></i>
-        </div>
-    </div>
+<body style="background-image: url('{% static 'images/login-bg.jpg' %}')">
 <section id="header" style="display: flex;justify-content: center;align-items: center; min-height:80vh">
     <div class="container">
-        <div class="card py-5 my-4" style="border-radius: 11px;border: 0 !important;background-color: rgb(233,227,246)">
-            <div class="text-center mb-3">
-                <img src="https://upload.wikimedia.org/wikipedia/en/b/b7/Mnit_logo.png" alt="" class="img-fluid" style="height:5rem;width:5rem;">
-            </div>
+        <div class="card py-5 my-4" style="border-radius: 11px;border: 0 !important;">
             <h3 class="text-center">Register New account</h3>
             <div class="card-body">
                 <div class="row">
-                    <!-- <div class="col-md-4 col-lg-4 col-12 text-center"
-                        style="display: flex;justify-content:center;align-items:center">
-                        <img class="img-fluid " src="images/login.svg" alt="" style="height:13rem;width: 13rem;">
-                    </div> -->
                     <div class="col-md-2 col-lg-2"></div>
                     <div class="col-md-8 col-lg-8 col-12">
-                        <form method="post">
+                        <form method="POST">
                             {% csrf_token %}
-                            {{ form.as_p }}
-                            <button class="btn btn-primary" type="submit">Sign up</button>
+                            <div class="row">
+                                <div class="col-md-6 col-lg-6">
+                                    {{ form.username|as_crispy_field }}
+                                </div>
+                                <div class="col-md-6 col-lg-6">
+                                    {{ profile_form.usertype|as_crispy_field }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 col-lg-6">
+                                    {{ form.first_name|as_crispy_field }}
+                                </div>
+                                <div class="col-md-6 col-lg-6">
+                                    {{ form.last_name|as_crispy_field }}
+                                </div>
+                            </div>
+                            {{ form.email|as_crispy_field }}
+                            <div class="row">
+                                <div class="col-12">
+                                    {{ form.password1|as_crispy_field }}
+                                </div>
+                                
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    {{ form.password2|as_crispy_field }}
+                                </div>
+                                
+                            </div>
+                            
+                            
+                            <input style="cursor: pointer;" type="submit" name="submit" id="submit" class="form-submit"
+                                value="Register" />
                         </form>
-                        <div class="text-end">
-                            <a href="/login">Login here</a>
+                        <div class="loginhere">
+                            <p> Already having account? <a href="/login" class="loginhere-link">Login </a></p>
+                            <p class="text-danger">  <a href="/" class="loginhere-link" style="color:#5624d0;">Back to home </a></p>
                         </div>
                     </div>
                     <div class="col-md-2 col-lg-2"></div>

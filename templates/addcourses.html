@@ -1,44 +1,183 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
 {% block content %}
-<section style="height:50vh; background-image: url(../static/images/kisibhinaam.jpg);">
+<style>
+    #moremodules{
+        display:none;
+    }
+</style>
+<section style="background-repeat:no-repeat;background-size:cover;background-position:center;background-color:#9873f3;background-blend-mode: multiply; background-image: url(../static/images/vltc.jpg);display:flex;justify-content:center;align-items:center">
+    <div class="container py-5 text-center">
+        <h2 class="pt-3 text-white">Add New Course</h2>
+    </div>
 </section>
+{% if user.userprofile.usertype == 'teacher' or user.username == 'admin' %}
 <div class="container py-5">
     <div class="text-end">
-        <h2>Add New Course</h2>
+        <p class="m-0 p-0 mb-3" style="color: #5624d0;">You can add at max 10 modules for now. Leave the extra modules blank if not required.</p>
     </div>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        <div class="form-group pb-3">
-            <label for="coursetitle">Course Name</label>
-            <input type="text" class="form-control" placeholder="Course name" name="coursetitle" required/>
-        </div>
-        <div class="form-group pb-3">
-            <label for="coursedesc">Course Description</label>
-            <input type="text" class="form-control" placeholder="Course Description" name="coursedesc" required/>
-        </div>
-        <div class="form-group pb-3">
-            <label for="courselink">Course Link</label>
-            <input type="text" class="form-control" placeholder="Course Description" name="courselink" required/>
+        <div class="card admission-card mb-3">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6 mb-0">
+                        {{ form.coursetitle|as_crispy_field }}
+                    </div>
+                    <div class="col-md-6 mb-0">
+                        {{ form.category|as_crispy_field }}
+                    </div>
+                    
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-0">
+                        {{ form.courseinstructorpicture|as_crispy_field }}
+                    </div>
+                    <div class="col-md-6 mb-0">
+                        {{ form.courseinstructor|as_crispy_field }}
+                    </div>
+                    
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-0">
+                        {{ form.aboutcourseinstructor|as_crispy_field }}
+                    </div>
+                    <div class="col-md-6 mb-0">
+                        {{ form.courseprerequisites|as_crispy_field }}
+                    </div>
+                    
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-0">
+                        {{ form.modulename1|as_crispy_field }}
+                    </div>
+                    <div class="col-md-6 mb-0">
+                        {{ form.modulelink1|as_crispy_field }}
+                    </div>
+                    
+                </div>
+                <div class="row">
+                    
+                    <div class="col-md-6 mb-0">
+                        {{ form.modulename2|as_crispy_field }}
+                    </div>
+                    <div class="col-md-6 mb-0">
+                        {{ form.modulelink2|as_crispy_field }}
+                    </div>
+                </div>
+                <div class="row">
+                    
+                    <div class="col-md-6 mb-0">
+                        {{ form.modulename3|as_crispy_field }}
+                    </div>
+                    <div class="col-md-6 mb-0">
+                        {{ form.modulelink3|as_crispy_field }}
+                    </div>
+                </div>
+                
+                <div class="row">
+                    
+                    <div class="col-md-6 mb-0">
+                        {{ form.modulename4|as_crispy_field }}
+                    </div>
+                    <div class="col-md-6 mb-0">
+                        {{ form.modulelink4|as_crispy_field }}
+                    </div>
+                </div>
+                <div class="row">
+                    
+                    <div class="col-md-6 mb-0">
+                        {{ form.modulename5|as_crispy_field }}
+                    </div>
+                    <div class="col-md-6 mb-0">
+                        {{ form.modulelink5|as_crispy_field }}
+                    </div>
+                </div>
+                <div class="text-end">
+                    <input type="button" onclick="showDiv()" id="btnmoremodules" class="btn btn-success btn-sm" value="Add more modules"></input>
+                </div>
+                <div id="moremodules">
+                    <div class="row">
+                    
+                        <div class="col-md-6 mb-0">
+                            {{ form.modulename6|as_crispy_field }}
+                        </div>
+                        <div class="col-md-6 mb-0">
+                            {{ form.modulelink6|as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        
+                        <div class="col-md-6 mb-0">
+                            {{ form.modulename7|as_crispy_field }}
+                        </div>
+                        <div class="col-md-6 mb-0">
+                            {{ form.modulelink7|as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        
+                        <div class="col-md-6 mb-0">
+                            {{ form.modulename8|as_crispy_field }}
+                        </div>
+                        <div class="col-md-6 mb-0">
+                            {{ form.modulelink8|as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        
+                        <div class="col-md-6 mb-0">
+                            {{ form.modulename9|as_crispy_field }}
+                        </div>
+                        <div class="col-md-6 mb-0">
+                            {{ form.modulelink9|as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        
+                        <div class="col-md-6 mb-0">
+                            {{ form.modulename10|as_crispy_field }}
+                        </div>
+                        <div class="col-md-6 mb-0">
+                            {{ form.modulelink10|as_crispy_field }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12 mb-0">
+                        {{ form.coursedesc|as_crispy_field }}
+                    </div>
+                    
+                </div>
+                <div class="row">
+                    <div class="col-12 mb-0">
+                        {{ form.thumbnailcourse|as_crispy_field }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Add Course" class="btn btn-primary">
+                </div>
+            </div>
         </div>
         
-        <div class="form-group pb-3">
-            <label for="category">Course Category</label>
-            <select  class="form-control" name="category">
-                <option value="web development">Web Development</option>
-                <option value="ml">ML</option>
-                <option value="ai">AI</option>
-            </select>
-        </div>
-        <div class="pb-2">
-            <label for="thumbnailcourses" class="form-label">Choose Thumbnail for Course</label>
-            <input class="form-control" type="file" id="thumbnailcourses">
-        </div>
-        <div class="form-group">
-            <input type="submit" value="Add" class="btn btn-primary">
-        </div>
     </form>
 </div>
+{% else %}
+<div class="container py-3">
+    <div class="alert alert-danger m-0 text-center" style="border: 0 !important;">
+        You are not authorised to add courses.
+    </div>
+</div>
+{% endif %}
+<script>
+    function showDiv() {
+        document.getElementById('moremodules').style.display = "block";
+        document.getElementById('btnmoremodules').style.display = "none";
+    }
+</script>
 {% endblock content %}
 
 

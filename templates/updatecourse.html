@@ -1,14 +1,160 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load static %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+<section style="background-repeat:no-repeat;background-size:cover;background-position:center;background-color:#9873f3;background-blend-mode: multiply; background-image: url(../static/images/vltc.jpg);display:flex;justify-content:center;align-items:center">
+    <div class="container py-5 text-center">
+        <h2 class="pt-3 text-white">Update Course</h2>
+    </div>
+</section>
 <div class="container py-5">
-            <div class="text-end"><h3>Update Course</h3></div>
-            <form action="" method="post">
-            {% csrf_token %}
-                {{form.as_p}}
-                <button class="btn btn-primary" type="submit">
-                    Update
-                </button>
+            
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="card admission-card mb-3">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6 mb-0">
+                                {{ form.coursetitle|as_crispy_field }}
+                            </div>
+                            <div class="col-md-6 mb-0">
+                                {{ form.category|as_crispy_field }}
+                            </div>
+                            
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-0">
+                                {{ form.courseinstructorpicture|as_crispy_field }}
+                            </div>
+                            <div class="col-md-6 mb-0">
+                                {{ form.courseinstructor|as_crispy_field }}
+                            </div>
+                            
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-0">
+                                {{ form.aboutcourseinstructor|as_crispy_field }}
+                            </div>
+                            <div class="col-md-6 mb-0">
+                                {{ form.courseprerequisites|as_crispy_field }}
+                            </div>
+                            
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-0">
+                                {{ form.modulename1|as_crispy_field }}
+                            </div>
+                            <div class="col-md-6 mb-0">
+                                {{ form.modulelink1|as_crispy_field }}
+                            </div>
+                            
+                        </div>
+                        <div class="row">
+                            
+                            <div class="col-md-6 mb-0">
+                                {{ form.modulename2|as_crispy_field }}
+                            </div>
+                            <div class="col-md-6 mb-0">
+                                {{ form.modulelink2|as_crispy_field }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            
+                            <div class="col-md-6 mb-0">
+                                {{ form.modulename3|as_crispy_field }}
+                            </div>
+                            <div class="col-md-6 mb-0">
+                                {{ form.modulelink3|as_crispy_field }}
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            
+                            <div class="col-md-6 mb-0">
+                                {{ form.modulename4|as_crispy_field }}
+                            </div>
+                            <div class="col-md-6 mb-0">
+                                {{ form.modulelink4|as_crispy_field }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            
+                            <div class="col-md-6 mb-0">
+                                {{ form.modulename5|as_crispy_field }}
+                            </div>
+                            <div class="col-md-6 mb-0">
+                                {{ form.modulelink5|as_crispy_field }}
+                            </div>
+                        </div>
+                        <div class="text-end">
+                            <input type="button" onclick="showDiv()" id="btnmoremodules" class="btn btn-success btn-sm" value="Add more modules"></input>
+                        </div>
+                        <div id="moremodules">
+                            <div class="row">
+                            
+                                <div class="col-md-6 mb-0">
+                                    {{ form.modulename6|as_crispy_field }}
+                                </div>
+                                <div class="col-md-6 mb-0">
+                                    {{ form.modulelink6|as_crispy_field }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                
+                                <div class="col-md-6 mb-0">
+                                    {{ form.modulename7|as_crispy_field }}
+                                </div>
+                                <div class="col-md-6 mb-0">
+                                    {{ form.modulelink7|as_crispy_field }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                
+                                <div class="col-md-6 mb-0">
+                                    {{ form.modulename8|as_crispy_field }}
+                                </div>
+                                <div class="col-md-6 mb-0">
+                                    {{ form.modulelink8|as_crispy_field }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                
+                                <div class="col-md-6 mb-0">
+                                    {{ form.modulename9|as_crispy_field }}
+                                </div>
+                                <div class="col-md-6 mb-0">
+                                    {{ form.modulelink9|as_crispy_field }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                
+                                <div class="col-md-6 mb-0">
+                                    {{ form.modulename10|as_crispy_field }}
+                                </div>
+                                <div class="col-md-6 mb-0">
+                                    {{ form.modulelink10|as_crispy_field }}
+                                </div>
+                            </div>
+                        </div>
+        
+                        <div class="row">
+                            <div class="col-12 mb-0">
+                                {{ form.coursedesc|as_crispy_field }}
+                            </div>
+                            
+                        </div>
+                        <div class="row">
+                            <div class="col-12 mb-0">
+                                {{ form.thumbnailcourse|as_crispy_field }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Update Course" class="btn btn-primary">
+                        </div>
+                    </div>
+                </div>
+                
             </form>
         </div>
 {% endblock content %}

@@ -2,25 +2,44 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-
+<style>
+    
+    .logo{
+        padding-left: 12px !important;
+    }
+    .navbar-nav{
+        text-align: center;
+    }
+    .navbar-nav .dropdown-menu{
+        text-align: center;
+    }
+    .dropdown, .dropend, .dropstart, .dropup{
+        margin-right: 0 !important;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .row{
+        --bs-gutter-x: 0 !important;
+    }
+</style>
 <section id="header" style="">
     <div class="container">
         <div class="row py-5">
 
+            <div class="col-lg-6 col-md-6 order-md-2 order-lg-2 text-center"
+                style="display: flex;justify-content:center;align-items:center; flex-direction:column">
+                <img src="{% static 'images/header-img.svg' %}" alt="" class="img-fluid" style="height:25rem;width:100%">
 
-            <div class="col-lg-6 col-md-6 order-md-2 order-lg-2"
+            </div>
+            <div class="col-lg-6 col-md-6 order-md-1 order-lg-1"
                 style="display: flex;justify-content:center;align-items:start; flex-direction:column">
-                <div class="subtitle">
+                <div class="subtitle mt-3">
                     CeL | MNIT JAIPUR
                 </div>
                 <h1 class="title">Explore courses by top professors.</h1>
                 <a href="#about" class="know-button" style="text-decoration: none">KNOW MORE</a>
             </div>
-            <div class="col-lg-6 col-md-6 order-md-1 order-lg-1 text-center"
-                style="display: flex;justify-content:center;align-items:center; flex-direction:column">
-                <img src="{% static 'images/header-img.svg' %}" alt="" class="img-responsive" style="height:25rem">
-
-            </div>
+            
         </div>
     </div>
 </section>
@@ -28,40 +47,54 @@
 <section id="blue-box" style="background-color: #f7f9fa;padding: 35px 0;">
     <div class="container">
         <div class="row">
-            <div class="col-12">
-                <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 1.4rem;"
-                    class="text-center"> Job Postings by Alumni</div>
-                    <p class="text-muted text-center">Lorem ipsum dolor sit amet.</p>
-                    <div class="card p-3 job-name" style="border-radius:12px;border: 0 !important;">
+            <div class="col-md-6 col-lg-6 col-12">
+                    <div class="card p-1 job-name h-100" style="border-radius:12px;border: 0 !important;">
+                        
+                    
                         <div class="card-body">
-                            <h3 class="jobname" style="color: #5624d0">{{jobdata.0.companyname}}</h3>
-                            <p class="mb-0">{{jobdata.0.post}}</p>
-                            <p class="mb-0">Qualification: {{jobdata.0.education}}</p>
-                            <p class="mb-0">Vacant Seats <span style="color:green;font-weight: 700;">{{jobdata.0.vacantseats}}</span></p>
+                            <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 1.4rem;"
+                    class="text-center mt-2"> Job Postings by Alumni</div>
+                            <h3 class="jobname" style="color: #5624d0">{{jobdata.companyname}}</h3>
+                            <p class="mb-0">{{jobdata.post}}</p>
+                            <p class="mb-0">Qualification: <i>{{jobdata.education}}</i></p>
+                            <p class="mb-0">Vacant Seats <span style="color:green;font-weight: 700;">{{jobdata.vacantseats}}</span></p>
                             <p class="text-muted mb-0">
-                                {{jobdata.0.jobdesc}}
+                                {{jobdata.jobdesc |truncatechars:100}}
                             </p>
-                            <div class="pt-3" style="display:flex;justify-content:space-between;">
-                                <p><i class="fa fa-map-marker marker"></i> {{jobdata.0.location}}</p>
+                            <div class="mt-2" style="display:flex;justify-content:space-between;">
+                                <p class="m-0"><i class="fa fa-map-marker marker"></i> {{jobdata.location}}</p>
 
-                                <a href="/alljobs" style="text-decoration: none;">View all jobs available</a>
+                                <a href="/alljobs" style="text-decoration: none;font-size: 0.9rem;">View all jobs available</a>
                             </div>
                         </div>
                     </div>
                 </p>
             </div>
+            <div class="col-md-6 col-lg-6 col-12">
+                <div class="card p-3 job-name shadow h-100" style="border-radius:12px;border: 0 !important;">
+                    <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 1rem;"
+                class="text-end"> Question of the Day</div>
+                    <div class="card-body" style="display: flex;flex-direction: column;justify-content:center;align-items:center">
+                        <h3 class="" style="color: #5624d0">{{questions.body}}</h3>
+                        <!-- <p class="mb-0">asked by: <i>{{questions.author.username}}</i></p> -->
+                        <a href="{% url 'question' questions.id %}" class="mt-1" style="text-decoration: none;font-size: 0.9rem;">View Responses or Answer Now</a>
+                    </div>
+                </div>
+                
+            </p>
+        </div>
         </div>
     </div>
 </section>
 
 <section id="about">
-    <div class="container">
-        <div class="row" style="padding-top:90px; padding-bottom: 92px">
-            <div class="col-lg-6 col-md-6">
-                <img src="{% static 'images/wehelp.jpeg' %}" style="max-width:100%;height:auto" alt="">
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 px-3">
+                <img src="{% static 'images/about-img.jpg' %}" style="max-width:100%;height:100%;border-radius:13px" alt="">
             </div>
-            <div class="col-lg-6 col-md-6 mt-3"
-                style="display:flex;flex-direction: column; justify-content:center;align-items: start;padding-left: 35px;padding-right:15px;">
+            <div class="col-lg-6 col-md-6 mt-3 px-3"
+                style="display:flex;flex-direction: column; justify-content:center;align-items: start;">
                 <div style="font-weight: 500;margin-bottom: 8px; color:#999;">
                     ABOUT
                 </div>
@@ -70,18 +103,10 @@
                 </h2>
                 <h3 style="color:#5624d0;">CeL | MNIT JAIPUR</h3>
                 <div style="text-align:justify">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus doloribus voluptatum
-                    laudantium vel, aut molestias asperiores. Sunt voluptas modi obcaecati rem accusamus sint quia
-                    suscipit aliquam quisquam quae, <br> <br> pariatur voluptatum?Lorem ipsum dolor sit amet
-                    consectetur, adipisicing elit. Adipisci quasi assumenda eos quae ipsam iusto cum! Tempora
-                    molestias odio quis! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iusto a iste
-                    neque aspernatur velit impedit tempora quae, fugit porro reprehenderit quisquam labore vitae
-                    voluptatibus placeat eos quibusdam incidunt culpa exercitationem!
-                    <br> <br> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ab, sequi laborum odit ipsam
-                    quibusdam omnis enim a quidem corporis sit iste necessitatibus tempora ipsa ad, aspernatur
-                    doloribus id odio. Consequuntur! Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut aut
-                    id aspernatur aliquid repellendus quas velit officia at culpa voluptatibus ea quia pariatur
-                    saepe veritatis eveniet nam quo, facilis dolores?
+                    The centre for e-Learning (CeL), established at the ICT Centre, MNIT Jaipur, aims to impart quality education, in the easiest manner, with equitable access to learners across the nation. The main motto of CeL is to digitalize learning by conducting seminars, learning events, workshops in different fields. The portal will offer video lectures (recorded as well as live series), interview experiences of placed students, and many more, to enable students to learn at their own pace and pursue their interests. <br> <br> Everyone does not have the same view of the world, and their understanding of something may differ dramatically from yours. Sometimes you can even create something awesome in your career by asking their thoughts or inputs on something you might not even know or have heard of. CeL will give you chance to grow, to be open to new ideas, new ways of doing things, or new ways of thinking.
+
+                    <br> <br> Learn Higher also states that meeting new people can offer encouragement, solutions
+                    to common problems, and advice for how to handle challenges. CeL will provide you a great way to meet other people in your area with shared interests.
                 </div>
             </div>
         </div>
@@ -92,61 +117,39 @@
 
 
 
-<section id="why-cel">
+<section id="why-cel" class="my-5">
     <div class="container">
-        <div class="row" style="padding-top:90px; padding-bottom: 92px">
-            <div class="col-lg-6 col-md-6 order-md-2 order-lg-2"
-                style="display:flex;flex-direction: column; justify-content:center;align-items: start;">
-                <img src="https://github.com/Charu1611/HiCoder/blob/master/images/whyhicoder.jpeg?raw=true" style="max-width:100%;height:auto" alt="">
+        <h2 class="px-3" style=" font-size:36px;line-height: 48px;font-weight:700;color: #1c1b1b; margin-bottom: 20px;">
+            Why CeL? </h2>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 order-md-2 order-lg-2 px-3"
+                style="display:flex;flex-direction: column; justify-content:center;align-items: center;">
+                <img class="" src="{% static 'images/vltc.jpg' %}" style="max-width:100%;height:auto;" alt="">
             </div>
-            <div class="col-lg-6 col-md-6 order-md-1 order-lg-1 mt-3" style="padding-right: 110px;">
-
-                <h2 style=" font-size:36px;line-height: 48px;font-weight:700;color: #1c1b1b; margin-bottom: 20px;">
-                    Why CeL? </h2>
-                <div
-                    style="text-align:justify;color: #363636;font-family: 'Roboto',sans-serif;margin-bottom: 26px;">
-                    cel enables students to think about real-world problems, design, and develop the right
-                    solution. <a href="" style="text-decoration: none">know more</a>
-                </div>
-
+            <div class="col-lg-6 col-md-6 order-md-1 order-lg-1 mt-3 px-3">
                 <div class="row">
-                    <div class="col-lg-2 col-md-2">
-                        <i class="fa fa-star fa-4x " style="color: #5624d0"></i>
-                    </div>
-                    <div class="col-lg-10 col-md-10" style="padding-left: 35px;">
-                        <h4 class="why-h mt-1">Personalised Training</h4>
-                        <div style="text-align:justify;color: #363636;font-family: 'Roboto',sans-serif;">
-                            We understand the weakness of students coming from poor educational backgrounds. cel
-                            avails resources and extra after-class support to match the criteria and keep up with
-                            tech.
-                        </div>
+                    <h4 class="why-h mt-1 "><i class="fa fa-user " style="color: #5624d0"></i> Mentor that fits you</h4>
+                    <div style="text-align:justify;color: #363636;font-family: 'Roboto',sans-serif;">
+                        
+                        Good mentors are enthusiastic people, and we have exact that team for you. Our team is dedicated and a good mentor is always willing to teach what he/she knows and accept the mentee where they currently are in their professional development and will help you to become better you.
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-2 col-md-2">
-                        <i class="fa fa-laptop fa-4x " style="color: #5624d0"></i>
-                    </div>
-                    <div class="col-lg-10 col-md-10" style="padding-left: 35px;">
-                        <h4 class="why-h mt-1">Personalised Training</h4>
-                        <div style="text-align:justify;color: #363636;font-family: 'Roboto',sans-serif;">
-                            We understand the weakness of students coming from poor educational backgrounds. cel
-                            avails resources and extra after-class support to match the criteria and keep up with
-                            tech.
-                        </div>
+                    <h4 class="why-h mt-1 "><i class="fa fa-star " style="color: #5624d0"></i> Unmatchable experience</h4>
+                    <div style="text-align:justify;color: #363636;font-family: 'Roboto',sans-serif;">
+                        
+                        We provide unmatchable experience, We make connections that set you forward. With personalized training and courses from the best mentors of top institutes, you get an unparalleled and exceptional experience.
                     </div>
                 </div>
-                <div class="row" style="margin-top: 20px">
-                    <div class="col-lg-2 col-md-2">
-                        <i class="fa fa-question fa-4x " style="color: #5624d0"></i>
-                    </div>
-                    <div class="col-lg-10 col-md-10" style="padding-left: 35px;">
-                        <h4 class="why-h mt-1">Production Projects</h4>
-                        <div style="text-align:justify;color: #363636;font-family: 'Roboto',sans-serif;">
-                            Every student ends up making around 3 projects that are wholesome, cloud-hosted and can
-                            be used for a commercial purpose.
-                        </div>
+                <div class="row">
+                    <h4 class="why-h mt-1 "><i class="fa fa-university " style="color: #5624d0"></i> Diversify your reach</h4>
+                    <div style="text-align:justify;color: #363636;font-family: 'Roboto',sans-serif;">
+                        
+                        With our webinars, you can diversify and extend your reach and can set a solid foundation for your future with personal and professional guidance.
                     </div>
                 </div>
+                
+                
             </div>
         </div>
 
@@ -197,122 +200,117 @@
     style="background-image: url('../static/images/traingle-curve.png');background-size: cover;background-repeat: no-repeat;background-position: center;">
     <div class="text-center" style="margin-bottom: 117px;">
         <div style="font-family: 'Poppins';font-weight: 500;margin-bottom: 16px;color: #999;">WHAT YOU GAIN</div>
-        <h2 style="margin-bottom:30px; font-size:36px;line-height: 48px;font-weight:700;color: #1c1b1b">at CeL MNIT
-            is useful
+        <h2 style="margin-bottom:30px; font-size:36px;line-height: 48px;font-weight:700;color: #1c1b1b">SKILLS THAT WE’LL DEVELOP
             <span style="display: block;color:#5624d0" class="mt-2">#Develop Skills</span>
         </h2>
     </div>
-    <div class="container">
+    <div class="container pb-5">
         <div class="row">
             <div class="col-md-3 col-lg-3 my-2">
-                <div class="card at-card h-100" style="border: 0 !important;">
+                <div class="card at-card h-100 mx-2" style="border: 0 !important;">
                     <div class="card-body text-center">
                         <img style="margin-bottom: 27px;" src="{% static 'images/at1.png' %}" alt="">
                         <h5
                             style="font-size: 18px;line-height: 28px;color: #1c1b1b;margin-bottom: 26px;font-weight: 700;">
-                            Front End</h5>
+                            Networking</h5>
                         <div>
-                            Students learn to design, develope the UI following UX with industry standards.
+                            Exchanging information on challenges, experiences, and goals is a key benefit of networking because it allows students to gain new insights that they may not have otherwise thought of.
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-md-3 col-lg-3 my-2">
-                <div class="card at-card h-100" style="border: 0 !important;">
+                <div class="card at-card h-100 mx-2" style="border: 0 !important;">
                     <div class="card-body text-center">
                         <img style="margin-bottom: 27px;" src="{% static 'images/at2.png' %}" alt="">
                         <h5
                             style="font-size: 18px;line-height: 28px;color: #1c1b1b;margin-bottom: 26px;font-weight: 700;">
-                            Backend</h5>
+                            Communication skill</h5>
                         <div>
-                            Students learn CS Architecture, CRUD, API, Authentication, Authorization, DB and etc.
+                            Students will learn presentation skills, negotiation skills, influencing skills, and teamwork building.
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-md-3 col-lg-3 my-2">
-                <div class="card at-card h-100" style="border: 0 !important;">
+                <div class="card at-card h-100 mx-2" style="border: 0 !important;">
                     <div class="card-body text-center">
                         <img style="margin-bottom: 27px;" src="{% static 'images/at3.png' %}" alt="">
                         <h5
                             style="font-size: 18px;line-height: 28px;color: #1c1b1b;margin-bottom: 26px;font-weight: 700;">
-                            Project Management</h5>
+                            Web development</h5>
                         <div>
-                            Students learn to plan, project, and execute development projects with client
-                            expectation.
+                            Students will learn how to design and execute parts in addition to the front-end and back-end knowledge.
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-md-3 col-lg-3 my-2">
-                <div class="card at-card h-100" style="border: 0 !important;">
+                <div class="card at-card h-100 mx-2" style="border: 0 !important;">
                     <div class="card-body text-center">
                         <img style="margin-bottom: 27px;" src="{% static 'images/at3.png' %}" alt="">
                         <h5
                             style="font-size: 18px;line-height: 28px;color: #1c1b1b;margin-bottom: 26px;font-weight: 700;">
-                            Production Deployment</h5>
+                            Creative Thinking</h5>
                         <div>
-                            Students learn to create a server, deploy an application following security guidelines.
+                            Allows students a way of looking at problems or situations from a fresh perspective that suggests unorthodox solutions (which may look unsettling at first).
                         </div>
                     </div>
                 </div>
             </div>
 
         </div>
-        <div class="row my-3">
+        <div class="row mt-3">
             <div class="col-md-3 col-lg-3 my-2">
-                <div class="card at-card h-100" style="border: 0 !important;">
+                <div class="card at-card h-100 mx-2" style="border: 0 !important;">
                     <div class="card-body text-center">
                         <img style="margin-bottom: 27px;" src="{% static 'images/at2.png' %}" alt="">
                         <h5
                             style="font-size: 18px;line-height: 28px;color: #1c1b1b;margin-bottom: 26px;font-weight: 700;">
-                            Basic Analytics</h5>
+                            Video editing</h5>
                         <div>
-                            Students learn about analytics, usability, and integration of analytics in their
-                            production application.
+                            Will introduce students to all the required tools and how to use them in a fruitful manner.
+
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-md-3 col-lg-3 my-2">
-                <div class="card at-card h-100" style="border: 0 !important;">
+                <div class="card at-card h-100 mx-2" style="border: 0 !important;">
                     <div class="card-body text-center">
                         <img style="margin-bottom: 27px;"
                             src="https://hicoder.in/assets/images/services/style9/6.png" alt="">
                         <h5
                             style="font-size: 18px;line-height: 28px;color: #1c1b1b;margin-bottom: 26px;font-weight: 700;">
-                            Soft Skills</h5>
+                            Management</h5>
                         <div>
-                            Soft skills encourages open communication & enhances corporate skills having corporate
-                            attitude.
+                            Students will learn planning, controlling, leading, organizing, flexibility and resilience.
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-md-3 col-lg-3 my-2">
-                <div class="card at-card h-100" style="border: 0 !important;">
+                <div class="card at-card h-100 mx-2" style="border: 0 !important;">
                     <div class="card-body text-center">
                         <img style="margin-bottom: 27px;" src="{% static 'images/at8.png' %}" alt="">
                         <h5
                             style="font-size: 18px;line-height: 28px;color: #1c1b1b;margin-bottom: 26px;font-weight: 700;">
-                            Max Pro Resume</h5>
+                            Leadership qualities</h5>
                         <div>
-                            Students get a unique cel smart ID, Certificate, and an industry expert-guided self
-                            developed integrated resume.
+                            Students will learn leadership traits that include honesty, confidence, commitment, and creativity.
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-md-3 col-lg-3 my-2">
-                <div class="card at-card h-100" style="border: 0 !important;">
+                <div class="card at-card h-100 mx-2" style="border: 0 !important;">
                     <div class="card-body text-center">
                         <img style="margin-bottom: 27px;" src="{% static 'images/at7.png' %}" alt="">
                         <h5
                             style="font-size: 18px;line-height: 28px;color: #1c1b1b;margin-bottom: 26px;font-weight: 700;">
-                            Industry Standards</h5>
+                            Personal branding</h5>
                         <div>
-                            Industry Trending technology, tools, and process adaption help students adapt to
-                            corporate with almost no effort.
+                            Students will learn how to become better at articulating and expressing what they do, what makes you different, and what you have to offer.
                         </div>
                     </div>
                 </div>
@@ -321,7 +319,7 @@
         </div>
     </div>
 </section>
-<section style="background-color: rgb(255, 255, 255);padding-top: 92px; padding-bottom: 92px;">
+<!-- <section style="background-color: rgb(255, 255, 255);padding-top: 92px; padding-bottom: 92px;">
     <div class="text-center">
         <div style="margin-bottom: 8px;color: #5624d0;font-family: 'Poppins';font-weight: 500;">What others think?</div>
         <h2
@@ -418,11 +416,11 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->
 <section style="background-color: #f7f9fa;padding: 48px 0;">
     <div class="container text-center">
-        <h2 class="text-dark" style="font-size: 36px;line-height: 48px;font-family: 'Poppins';font-weight: 600;">
-            Associated Companies</h2>
+        <h4 class="text-dark" style="font-size: 1.5rem;font-family: 'Poppins';font-weight: 600;">
+            Associated Companies</h4>
         <div class="owl-carousel owl-carousel2 mt-5">
             <div class="px-5">
                 <img src="https://bootstrapmade.com/demo/templates/OnePage/assets/img/clients/client-3.png"
@@ -445,47 +443,17 @@
                     alt="" class="img-fluid ptcell-logo" style="height:4rem;">
             </div>
             
-            <!-- <div>
-                <img class="img-fluid " style="max-width:100%;height: auto;" src="images/partner1.jpeg" alt="">
-            </div>
-            <div>
-                <img class="img-fluid " style="max-width:100%;height: auto;" src="images/partner2.jpeg" alt="">
-            </div>
-            <div>
-                <img class="img-fluid " style="max-width:100%;height: auto;" src="images/partner3.jpeg" alt="">
-            </div>
-            <div>
-                <img class="img-fluid " style="max-width:100%;height: auto;"
-                    src="https://cel.in/assets/images/partner/6.jpg" alt="">
-            </div>
-            <div>
-                <img class="img-fluid " style="max-width:100%;height: auto;"
-                    src="https://cel.in/assets/images/partner/7.jpg" alt="">
-            </div>
-            <div>
-                <img class="img-fluid " style="max-width:100%;height: auto;"
-                    src="https://cel.in/assets/images/partner/1.jpg" alt="">
-            </div>
-            <div>
-                <img class="img-fluid " style="max-width:100%;height: auto;"
-                    src="https://cel.in/assets/images/partner/2.jpg" alt="">
-            </div> -->
+            
 
         </div>
-        <div class="container">
-
         
-
-      </div>
 
     </div>
 </section>
-<section
-    style="background-image: url('../static/images/traingle-curve.png');background-size: 100% 94%;background-repeat: no-repeat;background-position: center;">
-    <div class="text-center" style="padding-bottom: 70px;margin-top: 92px;">
-        <div style="font-family: 'Poppins';font-weight: 500;margin-bottom: 8px;color: #999;">COURSES</div>
-        <h2 style="margin-bottom:30px; font-size:36px;line-height: 48px;font-weight:700;color: #1c1b1b">Courses on
-            the demand of students by
+<section class="my-5">
+    <div class="text-center">
+        <div style="font-family: 'Poppins';font-weight: 500;margin-bottom: 8px;color: #999;">CeL COURSES</div>
+        <h2 style="margin-bottom:30px; font-size:36px;line-height: 48px;font-weight:700;color: #1c1b1b">
             <span style="display: block;color:#5624d0">#top most faculty</span>
         </h2>
     </div>
@@ -495,13 +463,13 @@
         <div class="card blog-card"
                 style="border: 0 !important; border-radius: 0 !important;box-shadow: 0 5px 20px rgb(34 34 34 / 10%);">
                 <div class="card-img-top">
-                    <img src="{{MEDIA_URL}}/{{i.thumbnailcourse}}" alt="" class="img-fluid"
+                    <img src="{{i.thumbnailcourse.url}}" alt="" class="img-fluid"
                                     style="height:13rem; width:100%;">
                 </div>
                 <div class="card-body" style="padding: 33px 30px 25px;">
-                    <h3 style="margin:6px 0 15px;font-size: 28px;line-height: 32px;font-family: 'Poppins';"><a
+                    <h3 style="margin:6px 0 15px;font-size: 28px;line-height: 16px;font-family: 'Poppins';"><a
                             href="{% url 'coursedetail' i.id %}"
-                            style="font-size: 20px;line-height: 32px;font-weight: 600;color: #1c1b1b;text-decoration: none;">{{i.coursetitle}}</a></h3>
+                            style="font-size: 20px;font-weight: 600;color: #1c1b1b;text-decoration: none;">{{i.coursetitle}}</a></h3>
                             <p class="text-muted">{{i.coursedesc | truncatechars:30}}
                                         <a style="text-decoration: none"href="#" data-toggle="tooltip" data-placement="top" title="{{i.coursedesc}}">
                                             <small style="color: red;">more</small>
@@ -509,9 +477,9 @@
                                     </p>
                     <div style="display: flex;justify-content: space-between;align-items: center;">
                         <div style="display: flex;flex-direction: row;justify-content: center;align-items: center;">
-                            <img style="max-width: 40px;border-radius: 100%;margin-right: 8px;height: auto;"
-                                class="img-fluid" src="https://hicoder.in/assets/images/blog/avatar/1.png"
-                                alt=""><span style="font-size: 15px;color: #1c1b1b;">cel</span>
+                            <img style="max-width: 40px;height: auto;"
+                                class="img-fluid" src="{% static 'images/favicon.png' %}"
+                                alt="">
                         </div>
                         <div><i class="bi bi-clock" style="color: #67c27c;margin-right: 5px;"></i><span
                                 style="color: #1c1b1b;font-size: 14px;">{{i.dateadded}}</span></div>

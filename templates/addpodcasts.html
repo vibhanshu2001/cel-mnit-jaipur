@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+{% block content %}
+<section style="background-repeat:no-repeat;background-size:cover;background-position:center;background-color:#9873f3;background-blend-mode: multiply; background-image: url(../static/images/vltc.jpg);display:flex;justify-content:center;align-items:center">
+    <div class="container py-5 text-center">
+        <h2 class="pt-3 text-white">Add New Podcast</h2>
+    </div>
+</section>
+{% if user.userprofile.usertype == 'teacher' or user.username == 'admin' %}
+<div class="container py-5">
+    <div class="text-end">
+        <h2>Add New Podcast</h2>
+    </div>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="card admission-card mb-3" style="border:0 !important;">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4 mb-0">
+                        {{ form.podcasttitle|as_crispy_field }}
+                    </div>
+                    <div class="col-md-4 mb-0">
+                        {{ form.podcastcategory|as_crispy_field }}
+                    </div>
+                    <div class="col-md-4 mb-0">
+                        {{ form.podcastspeaker|as_crispy_field }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 mb-0">
+                        {{ form.podcastdesc|as_crispy_field }}
+                    </div>
+                    
+                </div>
+                <div class="row">
+                    <div class="col-md-4 mb-0">
+                        {{ form.organisationofspeaker|as_crispy_field }}
+                    </div>
+                    <div class="col-md-4 mb-0">
+                        {{ form.podcastthumbnail|as_crispy_field }}
+                    </div>
+                    <div class="col-md-4 mb-0">
+                        {{ form.podcastaudiofile|as_crispy_field }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Add" class="btn btn-primary">
+                </div>
+            </div>
+        </div>
+        
+    </form>
+</div>
+{% else %}
+<div class="container py-3">
+    <div class="alert alert-danger m-0 text-center" style="border: 0 !important;">
+        You are not authorised to add podcasts.
+    </div>
+</div>
+{% endif %}
+{% endblock content %}
+
+
+
