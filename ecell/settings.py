@@ -25,7 +25,7 @@ SECRET_KEY = ')_ci+igwcz&-vm%dftxi$3a-y_e(t+zl5@z*m4$cedzngdsqmn'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['slimy-husky-88.loca.lt','127.0.0.1','great-panther-41.loca.lt']
+ALLOWED_HOSTS = ['127.0.0.1','172.16.51.68']
 
 
 # Application definition

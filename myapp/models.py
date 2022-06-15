@@ -86,7 +86,7 @@ class ExperienceUpload(models.Model):
     branch = models.CharField(max_length=20, blank=True, null=True)
     passoutyear = models.CharField(max_length=50, blank=True, null=True)
     companyplaced = models.CharField(max_length=100, blank=True, null=True)
-    experience = models.TextField(max_length=500,blank=True, null=True)
+    experience = models.TextField(max_length=20000,blank=True, null=True)
     def __str__(self):
         return self.studentname
 class JobUpload(models.Model):

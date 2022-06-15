@@ -3,7 +3,10 @@
 {% load crispy_forms_filters %}
 {% load crispy_forms_tags %}
 {% block content %}
-<section style="height:50vh; background-image: url(../static/images/kisibhinaam.jpg);">
+<section style="background-repeat:no-repeat;background-size:cover;background-position:center;background-color:#9873f3;background-blend-mode: multiply; background-image: url(../static/images/vltc.jpg);display:flex;justify-content:center;align-items:center">
+    <div class="container py-5 text-center">
+        <h2 class="pt-3 text-white">Placement Connect</h2>
+    </div>
 </section>
 {% if user.userprofile.usertype == 'alumni' or user.username == 'admin' %}
 <div class="container py-5">

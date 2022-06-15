@@ -70,6 +70,8 @@ def addpodcast(request):
 
 def about(request):
     return render(request, 'about.html')
+def results(request):
+    return render(request, 'results.html')
 @login_required(login_url='login')
 def allusers(request):
     User = get_user_model()

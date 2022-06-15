@@ -26,6 +26,7 @@ urlpatterns = [
     path('new-question', views.newQuestionPage, name='new-question'),
     path('question/<int:id>', views.questionPage, name='question'),
     path('reply', views.replyPage, name='reply'),
+    path('results/',views.results, name="results"),
 ]
 # urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

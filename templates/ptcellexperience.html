@@ -11,6 +11,11 @@
         
         <h3 style="display: inline" class="me-3"></h3><a href="/addexperience"class="btn btn-primary"><i class="fa fa-plus"></i> Add New</a>
     </div>
+    {% if not data %}
+    <div class="alert alert-danger text-center" style="border:0 !important;background-color: #c8b7f2 !important; color: #5624d0 !important;">
+        No experience found
+    </div>
+    {% endif %}
     <div class="row ">
         {% for i in data %}
         <div class="col-md-6 col-lg-6 col-12 h-100 mb-4">

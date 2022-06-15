@@ -26,7 +26,7 @@
                 <div class="col-md-6 col-lg-6 text-white">
                     <span style="margin-right: 20px" class="font-roboto"><i class="bi bi-envelope text-white"
                             style="margin-right: 7px; font-size: 14px"></i>
-                        cel@mnit.ac.in</span>
+                        <a href="mailto:cel@mnit.ac.in" class="text-white text-decoration-none">cel@mnit.ac.in</a></span>
                         {% if request.user.username == 'admin' %}
                         <span style="margin-right: 20px" class="font-roboto"><i class="bi bi-bank text-white"
                             style="margin-right: 7px; font-size: 14px"></i>
@@ -53,18 +53,26 @@
                             document.getElementById("dnt").innerHTML = x;
                         </script>
                     </span>
-                    <i class="bi text-white soc-icon bi-facebook" style="margin-right: 15px; font-size: 14px"></i>
-                    <i class="bi text-white soc-icon bi-instagram" style="margin-right: 15px; font-size: 14px"></i>
-                    <i class="bi text-white soc-icon bi-twitter" style="margin-right: 15px; font-size: 14px"></i>
-                    <i class="bi text-white soc-icon bi-linkedin" style="margin-right: 15px; font-size: 14px"></i>
+                    <a target="_blank" style="text-decoration: none;" href="https://www.instagram.com/cel_mnit/">
+                        <i class="bi text-white soc-icon bi-instagram" style="margin-right: 15px; font-size: 14px"></i>
+                    </a>
+                    <a target="_blank" style="text-decoration: none;" href="https://www.youtube.com/channel/UC931qfhOPHO9vefRPWj_vHw">
+                        <i class="bi text-white soc-icon bi-youtube" style="margin-right: 15px; font-size: 14px"></i>
+                    </a>
+                    <a target="_blank" style="text-decoration: none;" href="https://www.linkedin.com/in/cel-mnit-jaipur-7719a8226/">
+                        <i class="bi text-white soc-icon bi-linkedin" style="margin-right: 15px; font-size: 14px"></i>
+                    </a>
+                    
+                    
+                    
                 </div>
             </div>
         </div>
     </section>
-
-    <section id="navbar" class="container" style="padding-left: 0 !important">
+    
+    <section id="navbar" class="container" style="padding-left: 0 !important;padding-right: 0 !important;">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid" style="padding-left: 0 !important">
+            <div class="container-fluid" style="padding-left: 0 !important;padding-right: 0 !important;">
                 <div>
                     <a class="navbar-brand" href="/"><img class="logo img-fluid"
                             src="{% static 'images/ecell-logo.png' %}" alt="" /></a>
@@ -98,7 +106,7 @@
                                 onmouseout="this.innerHTML='PTCELL +'">
                                 PTCELL <span>+</span>
                             </a>
-                            <ul class="dropdown-menu" style="left: -95%" aria-labelledby="navbarDropdown"
+                            <ul class="dropdown-menu" style="" aria-labelledby="navbarDropdown"
                                 style="padding: 15px 0">
                                 <li>
                                     <a class="dropdown-item" href="/alljobs" style="padding: 10px 30px !important">
@@ -123,7 +131,7 @@
                                 onmouseout="this.innerHTML='COURSES +'">
                                 COURSES <span>+</span>
                             </a>
-                            <ul class="dropdown-menu" style="left: -95%" aria-labelledby="navbarDropdown"
+                            <ul class="dropdown-menu" style="" aria-labelledby="navbarDropdown"
                                 style="padding: 15px 0">
                                 {% if request.user.userprofile.usertype == 'teacher' or request.user.username == 'admin' %}
                                 <li>
@@ -144,7 +152,7 @@
                                 onmouseout="this.innerHTML='PODCASTS +'">
                                 PODCASTS <span>+</span>
                             </a>
-                            <ul class="dropdown-menu" style="left: -95%" aria-labelledby="navbarDropdown"
+                            <ul class="dropdown-menu" style="" aria-labelledby="navbarDropdown"
                                 style="padding: 15px 0">
                                 {% if request.user.userprofile.usertype == 'teacher' or request.user.username == 'admin' %}
                                 <li>
@@ -224,7 +232,7 @@
                                 onmouseout="this.innerHTML='PTCELL +'">
                                 PTCELL <span>+</span>
                             </a>
-                            <ul class="dropdown-menu" style="left: -95%" aria-labelledby="navbarDropdown"
+                            <ul class="dropdown-menu" style="" aria-labelledby="navbarDropdown"
                                 style="padding: 15px 0">
                                 <li>
                                     <a class="dropdown-item" href="/alljobs" style="padding: 10px 30px !important">
@@ -249,7 +257,7 @@
                                 onmouseout="this.innerHTML='COURSES +'">
                                 COURSES <span>+</span>
                             </a>
-                            <ul class="dropdown-menu" style="left: -95%" aria-labelledby="navbarDropdown"
+                            <ul class="dropdown-menu" style="" aria-labelledby="navbarDropdown"
                                 style="padding: 15px 0">
                                 {% if request.user.userprofile.usertype == 'teacher' or request.user.username == 'admin' %}
                                 <li>
@@ -270,7 +278,7 @@
                                 onmouseout="this.innerHTML='PODCASTS +'">
                                 PODCASTS <span>+</span>
                             </a>
-                            <ul class="dropdown-menu" style="left: -95%" aria-labelledby="navbarDropdown"
+                            <ul class="dropdown-menu" style="" aria-labelledby="navbarDropdown"
                                 style="padding: 15px 0">
                                 {% if request.user.userprofile.usertype == 'teacher' or request.user.username == 'admin' %}
                                 <li>
@@ -316,6 +324,10 @@
             </div>
         </nav>
     </section>
+    <div class="alert alert-warning text-center p-1 mb-0" role="alert" style="border-radius:0 !important">
+        Results announced for Recruitment 2022-23 <a style="text-decoration:none" href="/results">check here</a>
+        
+    </div>
     <div style="width: 520px !important; padding: 25px 30px 50px 50px" class="offcanvas offcanvas-end" tabindex="-1"
         id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
         <div class="offcanvas-header" style="justify-content: flex-end">
@@ -388,17 +400,22 @@
                     </div>
                 </li>
             </ul>
-            <i style="
-            background-color: #5624d0;
-            font-size: 15px;
-            border-radius: 3px;
-            width: 30px;
-            height: 30px;
-            line-height: 30px;
-            color: #fff;
-            text-align: center;
-          " class="fa fa-facebook"></i>
-            <i style="
+            
+            <a href="https://www.youtube.com/channel/UC931qfhOPHO9vefRPWj_vHw" style="text-decoration: none">
+                <i style="
+                background-color: #5624d0;
+                font-size: 15px;
+                border-radius: 3px;
+                width: 30px;
+                height: 30px;
+                line-height: 30px;
+                color: #fff;
+                text-align: center;
+              " class="fa fa-youtube"></i>
+            </a>
+            
+            <a href="https://www.instagram.com/cel_mnit/" style="text-decoration: none;">
+                <i style="
             background-color: #5624d0;
             font-size: 15px;
             border-radius: 3px;
@@ -408,26 +425,21 @@
             color: #fff;
             text-align: center;
           " class="fa fa-instagram"></i>
-            <i style="
-            background-color: #5624d0;
-            font-size: 15px;
-            border-radius: 3px;
-            width: 30px;
-            height: 30px;
-            line-height: 30px;
-            color: #fff;
-            text-align: center;
-          " class="fa fa-twitter"></i>
-            <i style="
-            background-color: #5624d0;
-            font-size: 15px;
-            border-radius: 3px;
-            width: 30px;
-            height: 30px;
-            line-height: 30px;
-            color: #fff;
-            text-align: center;
-          " class="fa fa-linkedin"></i>
+            </a>
+            
+            <a href="https://www.linkedin.com/in/cel-mnit-jaipur-7719a8226/" style="text-decoration: none;">
+                <i style="
+                background-color: #5624d0;
+                font-size: 15px;
+                border-radius: 3px;
+                width: 30px;
+                height: 30px;
+                line-height: 30px;
+                color: #fff;
+                text-align: center;
+              " class="fa fa-linkedin"></i>
+            </a>
+            
         </div>
     </div>
     {% block content %}{% endblock content %}
@@ -542,46 +554,44 @@
                     <a style="text-decoration: none;font-size:0.8rem" href="">Terms of Service</a>
                 </div>
                 <div class="col-6 text-end" style="padding-right:10px;">
-                    <i style="
-                background-color: #5624d0;
-                font-size: 15px;
-                border-radius: 3px;
-                width: 30px;
-                height: 30px;
-                line-height: 30px;
-                color: #fff;
-                text-align: center;
-              " class="fa fa-facebook"></i>
-                    <i style="
-                background-color: #5624d0;
-                font-size: 15px;
-                border-radius: 3px;
-                width: 30px;
-                height: 30px;
-                line-height: 30px;
-                color: #fff;
-                text-align: center;
-              " class="fa fa-instagram"></i>
-                    <i style="
-                background-color: #5624d0;
-                font-size: 15px;
-                border-radius: 3px;
-                width: 30px;
-                height: 30px;
-                line-height: 30px;
-                color: #fff;
-                text-align: center;
-              " class="fa fa-twitter"></i>
-                    <i style="
-                background-color: #5624d0;
-                font-size: 15px;
-                border-radius: 3px;
-                width: 30px;
-                height: 30px;
-                line-height: 30px;
-                color: #fff;
-                text-align: center;
-              " class="fa fa-linkedin"></i>
+                    <a href="https://www.youtube.com/channel/UC931qfhOPHO9vefRPWj_vHw" style="text-decoration: none">
+                        <i style="
+                        background-color: #5624d0;
+                        font-size: 15px;
+                        border-radius: 3px;
+                        width: 30px;
+                        height: 30px;
+                        line-height: 30px;
+                        color: #fff;
+                        text-align: center;
+                      " class="fa fa-youtube"></i>
+                    </a>
+                    
+                    <a href="https://www.instagram.com/cel_mnit/" style="text-decoration: none;">
+                        <i style="
+                    background-color: #5624d0;
+                    font-size: 15px;
+                    border-radius: 3px;
+                    width: 30px;
+                    height: 30px;
+                    line-height: 30px;
+                    color: #fff;
+                    text-align: center;
+                  " class="fa fa-instagram"></i>
+                    </a>
+                    
+                    <a href="https://www.linkedin.com/in/cel-mnit-jaipur-7719a8226/" style="text-decoration: none;">
+                        <i style="
+                        background-color: #5624d0;
+                        font-size: 15px;
+                        border-radius: 3px;
+                        width: 30px;
+                        height: 30px;
+                        line-height: 30px;
+                        color: #fff;
+                        text-align: center;
+                      " class="fa fa-linkedin"></i>
+                    </a>
                 </div>
             </div>
         </div>
